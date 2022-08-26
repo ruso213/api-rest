@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<header  class="cabeza">
+    <div class="cabeza-barra">
+        <a href = "index.html">RusoMovies</a>
+    </div>
+
+</header>
+
+<body>
+
+    <section class="contenedor ">
+
+        <div class="busqueda">
+            <input class="buscador" type="text">
+            <button class="buscador-imagen">
+                <img class="imagen-de-busqueda " src="/lista-de-peliculas/assets/busqueda-de-lupa.png" width="30px"
+                    height="30px" alt="imagen">
+            </button>
+        </div>
+
+        <div class="tendencias ">
+            <div class="tendencia-arriba ">
+                <h3 class="tendencias-texto ">tendencias</h3>
+                <h3 class="tendencias-texto inactive">tendencias peliculas</h3>
+                <button  onclick="clickvermas()" href="./trending.html" class="tendencias-boton">
+                    <h3> ver mas</h3>
+                </button>
+                <button class="tendencias-boton-ver-menos inactive" onclick="clicklogo()">
+                    <h3>
+                        <h3> ver menos</h3>
+                    </h3>
+                </button>
+            </div>
+
+        </div>
+
+        <div  class="tendencias-imagenes">
+
+            <div class="aqui-van-las-imgs">
+               
+            </div>
+
+
+        </div>
+
+
+        <div  class="tendencias-imagenes-tv inactive">
+
+            <h3>tendecias series</h3>
+
+            <div class="aqui-van-las-imgs-tv">
+               
+            </div>
+
+
+        </div>
+
+
+        <h2 class="achedos">categorias</h2>
+
+
+
+        <div id="contenedor-de-categoritas" class="categorias">
+
+
+            <div class="categorias-botones">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="/lista-de-peliculas/index.js"></script>
+    <script src="./node.js"></script>
+    <script src="./navegator.js"></script>
+
+</body>
+
+</html>

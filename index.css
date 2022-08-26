@@ -1,0 +1,374 @@
+
+/* csss */
+
+
+    :root{
+    --moradofuerte:rgba(55, 17, 85, 1);
+    --moradonofuerte:rgb(189, 189, 247);
+}
+
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+body{
+    background-color: rgb(143, 166, 216);
+}
+
+body::-webkit-scrollbar{
+    background-color: none;
+    border-radius: 5px;
+    width: 10px;
+    margin:  0 20px 0 20px;
+   
+}
+body::-webkit-scrollbar-thumb{
+    background-color:var(--moradonofuerte);
+    border-radius: 1px;
+
+}
+body::-webkit-scrollbar-thumb:hover{
+    background-color:var(--moradofuerte);
+    border-radius: 10px;
+    width: 3px;
+    transition-duration: .3s;
+
+}
+
+.cabeza{
+    background-color: var(--moradonofuerte);
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+}
+
+.cabeza h2{
+    color: var(--moradofuerte);
+}
+
+.imagen-de-la-peli{
+    max-width: 200px;   
+    margin-right: 40px;
+    border-radius: 10px;
+}
+.cabeza-barra{
+    grid-area: 1/1/2/2;
+    display: flex;
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+
+.cabeza-barra h2:hover{
+    transition-duration: .3s;
+    color:var(--moradofuerte);
+}
+
+
+.cabeza-barra a{
+    background-color: var(--moradofuerte);
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--moradonofuerte);
+    font-size: 20px;
+    text-decoration: none;
+}
+.cabeza-barra a:hover{
+    background-color: rgba(87, 0, 128, 0.644);
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--moradofuerte);
+    font-size: 20px;
+    transition-duration: .2s;
+    text-decoration: none;
+}
+
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.tendencias-imagenes{
+    display: flex;
+    overflow-x: auto;
+    margin: 30PX 20px 0 20px;
+}
+
+.tendencias-imagenes::-webkit-scrollbar{
+    background-color: none;
+    border-radius: 5px;
+    height: 0px;
+    margin:  0 20px 0 20px;
+   
+}
+.tendencias-imagenes::-webkit-scrollbar-thumb{
+    background-color:var(--moradonofuerte);
+    border-radius: 10px;
+
+}
+.tendencias-imagenes::-webkit-scrollbar-thumb:hover{
+    background-color:var(--moradofuerte);
+    border-radius: 10px;
+    width: 3px;
+    transition-duration: .3s;
+
+}
+
+
+
+
+
+.busqueda{
+    padding: 40px 5vw 40px 5vw;    display: grid;
+    grid-template-columns: 50fr 1fr;
+}
+
+.buscador{
+    font-size: 35px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius:7px ;
+    border:none;
+    background-color: var(--moradonofuerte);
+    outline: none;
+    color:rgba(55, 17, 85, 0.521);
+}
+
+
+
+.buscador-imagen{
+    border: none ;
+    background-color: var(--moradofuerte);
+    border-top-right-radius: 7px;
+    border-bottom-right-radius:7px ;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.buscador-imagen:hover{
+    background-color:rgb(150, 92, 250) ;
+    color: var(--moradofuerte);
+    color:var(--moradofuerte) ;
+}
+
+.tendencia-arriba{
+    display: grid;      
+    grid-template-columns: 1fr .2fr;
+}
+
+.tendencias-texto{
+    color:var(--moradofuerte) ;
+    padding-left: 30px;
+    font-size: 20px;
+}
+
+
+
+.tendencias-boton{
+    margin-right: 5vw;
+    background-color:var(--moradofuerte) ;
+    border: none;
+    border-radius: 7px;
+    color: var(--moradonofuerte);
+    padding:7px;
+    cursor: pointer;
+}
+.tendencias-boton-ver-menos{
+    margin-right: 5vw;
+    background-color:var(--moradofuerte) ;
+    border: none;
+    border-radius: 7px;
+    color: var(--moradonofuerte);
+    padding:7px;
+    cursor: pointer;
+}
+
+.tendencias-boton:hover{
+    background-color:var(--moradonofuerte) ;
+    color:var(--moradofuerte) ;
+}
+
+.tendencias{
+    display: grid;
+    align-items: center;
+}
+
+.categorias{
+    display: grid;
+    grid-template-rows: 1fr;
+    
+    margin-left: 30px;
+}
+
+.categorias-botones{
+    color:var(--moradofuerte) ;
+}
+
+.imagen-de-la-peli{
+    max-width: 200px;   
+}
+
+.categorias-botones div{
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.categorias-botones{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    justify-items: center;
+    margin-top: 20px;
+
+}
+
+
+
+.a{
+    background-color: orange;
+    border: none;
+    border-radius: 7px;
+    padding: 0 10px 0 10px;
+    margin-right: 7px;
+
+}
+
+.b{
+    background-color: rgb(98, 0, 255);
+    border: none;
+    border-radius: 7px;
+    padding: 0 10px 0 10px;
+    margin-right: 7px;
+
+}
+
+.aqui-van-las-imgs{
+    display: flex;
+}
+
+.c{
+    background-color: rgb(0, 255, 191);
+    border: none;
+    border-radius: 7px;
+    padding: 0 10px 0 10px;
+    margin-right: 7px;
+}
+
+.categorias-botones input{
+    cursor: pointer;
+}
+
+
+.botones{
+    color: var(--moradonofuerte);
+    background-color: var(--moradofuerte);  
+    border-radius: 5px;
+    display: flex;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+
+.achedos{
+    margin-left: 30px;
+    margin-top: 40px;
+    color: var(--moradofuerte);
+}
+
+.botones:hover{
+    background-color:rgb(202, 177, 245) ;
+    color: var(--moradofuerte);
+    transition-duration: .5s;
+    color:var(--moradofuerte) ;
+}
+
+
+
+.inactive{
+    display: none;
+}
+
+
+
+
+/* trend */
+
+
+.imagen-tendencias{
+    width: 207px;
+    margin: 0 7px 20px 0px ;
+}
+
+
+.tendencias-imagenes-tv {
+    background-color: none
+    ;
+}
+.tendencias-imagenes-tv h3{
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: 20px;
+    color: var(--moradofuerte);
+}
+
+.aqui-van-las-imgs-tv{
+    display: flex;
+    overflow-x: auto    ;
+    margin-left: 27px;
+    margin-top: 30px;
+}
+
+.aqui-van-las-imgs-tv::-webkit-scrollbar{
+    background-color: none;
+    border-radius: 5px;
+    height: 10px;
+    margin:  0 20px 0 20px;
+   
+}
+.aqui-van-las-imgs-tv::-webkit-scrollbar-thumb{
+    background-color:var(--moradonofuerte);
+    border-radius: 10px;
+
+}
+.aqui-van-las-imgs-tv::-webkit-scrollbar-thumb:hover{
+    background-color:var(--moradofuerte);
+    border-radius: 10px;
+    width: 3px;
+    transition-duration: .3s;
+
+}
+
+.aqui-van-las-imgs-trend{
+    display: flex;
+    overflow-x: auto    ;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.aqui-van-las-imgs-trend::-webkit-scrollbar{
+    background-color: none;
+    border-radius: 5px;
+    height: 10px;
+    margin:  0 20px 0 20px;
+   
+}
+.aqui-van-las-imgs-trend::-webkit-scrollbar-thumb{
+    background-color:var(--moradonofuerte);
+    border-radius: 10px;
+
+}
+.aqui-van-las-imgs-trend::-webkit-scrollbar-thumb:hover{
+    background-color:var(--moradofuerte);
+    border-radius: 10px;
+    width: 3px;
+    transition-duration: .3s;
+
+}
+
+
+
