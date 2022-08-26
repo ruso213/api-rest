@@ -38,7 +38,7 @@ function navigator (){
         home()
     }
     else if(location.hash.startsWith("#category")){
-        category()
+        categoria()
     }else if(location.hash.startsWith("")){
         home()
         console.log("dsfafasd")
@@ -98,7 +98,24 @@ function trend(){
 }   
 
 
-function category(){
-    console.log("category")
+function categoria(){
 
+
+
+    tendencia_tv_contenedor.classList.add("inactive")
+    quivanlasimgs.classList.add("inactive")
+    tendencia.classList.add("inactive")
+    trendingpreview.classList.add("inactive")
+    categorias_botones.classList.add("inactive")
+    
+    console.log(`estas en ${location.hash}`)
+
+    const [_ , categoryinfo] = location.hash.split("=")
+    const [categoryid , categoryname] = categoryinfo.split("-")
+    getcategorymovies(categoryid)
+    categoria_titulo.textContent = categoryname
+
+    contenedor_img_categorias.classList.remove("inactive")
+    img_categorias.classList.remove("inactive")
+    
 }

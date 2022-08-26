@@ -50,8 +50,21 @@ body::-webkit-scrollbar-thumb:hover{
 
 .imagen-de-la-peli{
     max-width: 200px;   
-    margin-right: 40px;
+    margin-bottom: 10px;
+    margin-right: 10px;
     border-radius: 10px;
+}
+.imagen-categorias .texoth3{
+    margin-bottom: 20px;
+
+    color: var(--moradofuerte);
+}
+
+.imagen-categorias{
+    display: flex;
+    flex-direction: column;
+    max-width: 210px;
+    align-items: center;
 }
 .cabeza-barra{
     grid-area: 1/1/2/2;
@@ -301,7 +314,15 @@ body::-webkit-scrollbar-thumb:hover{
 
 .imagen-tendencias{
     width: 207px;
-    margin: 0 7px 20px 0px ;
+    display: flex;
+    margin: 0 7px 20px 0px;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+
+}
+.imagen-tendencias .texoth3{
+   color: var(--moradofuerte);
 }
 
 
@@ -309,10 +330,10 @@ body::-webkit-scrollbar-thumb:hover{
     background-color: none
     ;
 }
-.tendencias-imagenes-tv h3{
-    margin-top: 30px;
-    margin-left: 30px;
-    font-size: 20px;
+.tendencias-imagenes-tv .texoth3{
+    
+    font-size: 17px;
+ 
     color: var(--moradofuerte);
 }
 
@@ -329,6 +350,13 @@ body::-webkit-scrollbar-thumb:hover{
     height: 10px;
     margin:  0 20px 0 20px;
    
+}
+
+.nosexd{
+    margin-top:30px;
+    margin-left: 30px;
+    font-size:20px;
+    color: var(--moradofuerte);
 }
 .aqui-van-las-imgs-tv::-webkit-scrollbar-thumb{
     background-color:var(--moradonofuerte);
@@ -370,5 +398,14 @@ body::-webkit-scrollbar-thumb:hover{
 
 }
 
+
+
+
+.categorias-imagenes{
+    padding-left: 45px;
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
 
 

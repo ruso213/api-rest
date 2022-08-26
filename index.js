@@ -1,3 +1,5 @@
+/* const { id } = require("date-fns/locale");
+ */
 const apikey = "0a8c928df346aad46752e35300e6114e";
 const api = axios.create({
     baseURL: "https://api.themoviedb.org/3"
@@ -9,41 +11,6 @@ const api = axios.create({
         "api_key": apikey
     }
 })
-
-
-
-async function gettrendingpelis() {
-
-    const { data } = await api("/trending/movie/week?api_key=" + apikey);
-    const movies = data.results;
-    
-    quivanlasimgs.innerHTML = ""
-
-    movies.forEach(movie => {
-
-        const trendingpreview = document.querySelector(".aqui-van-las-imgs")
-
-
-        const movieconteiner = document.createElement("div")
-        movieconteiner.classList.add("imagen-tendencias")
-
-
-
-
-        const movieimg = document.createElement("img");
-        movieimg.classList.add("imagen-de-la-peli");
-        movieimg.setAttribute("alt", movie.title)
-        movieimg.setAttribute("src", "https://image.tmdb.org/t/p/w300" + movie.poster_path);
-
-
-        movieconteiner.appendChild(movieimg)
-        trendingpreview.appendChild(movieconteiner)
-    });
-}
-
-
-
-
 
 async function gettrendingtv() {
 
@@ -61,6 +28,13 @@ async function gettrendingtv() {
         movieconteiner.classList.add("imagen-tendencias")
 
 
+        const categorytext = document.createTextNode(movie.original_name)
+
+
+        const namedelapeli = document.createElement("h3")
+        namedelapeli.classList.add("texoth3")
+        namedelapeli.appendChild(categorytext)
+        
 
 
         const movieimg = document.createElement("img");
@@ -68,21 +42,11 @@ async function gettrendingtv() {
         movieimg.setAttribute("alt", movie.title)
         movieimg.setAttribute("src", "https://image.tmdb.org/t/p/w300" + movie.poster_path);
 
-
         movieconteiner.appendChild(movieimg)
+        movieconteiner.appendChild(namedelapeli)
         trendingpreview.appendChild(movieconteiner)
     });
 }
-
-
-
-console.log("afasdfasdfaaaaaaaaaaaaaaaaaaaa")
-
-
-
-
-
-
 
 
 async function getcategorispreview() {
@@ -100,6 +64,8 @@ async function getcategorispreview() {
         const categorycontainerssssss = document.createElement("div")
         categorycontainerssssss.classList.add("category-lista")
 
+
+
         const categortconteiner = document.createElement("button")
         categortconteiner.classList.add("botones")
         categortconteiner.setAttribute("id", categorys.name)
@@ -116,5 +82,75 @@ async function getcategorispreview() {
     });
 }
 
+async function gettrendingpelis() {
+
+    const { data } = await api("/trending/movie/week?api_key=" + apikey);
+    const movies = data.results;
+    
+    quivanlasimgs.innerHTML = ""
+
+    movies.forEach(movie => {
+
+        const trendingpreview = document.querySelector(".aqui-van-las-imgs")
 
 
+        const movieconteiner = document.createElement("div")
+        movieconteiner.classList.add("imagen-tendencias")
+
+
+        const categorytext = document.createTextNode(movie.title)
+
+
+        const namedelapeli = document.createElement("h3")
+        namedelapeli.appendChild(categorytext)
+        namedelapeli.classList.add("texoth3")
+
+        const movieimg = document.createElement("img");
+        movieimg.classList.add("imagen-de-la-peli");
+        movieimg.setAttribute("alt", movie.title)
+        movieimg.setAttribute("src", "https://image.tmdb.org/t/p/w300" + movie.poster_path);
+
+        
+        movieconteiner.appendChild(movieimg)
+        movieconteiner.appendChild(namedelapeli)
+        trendingpreview.appendChild(movieconteiner)
+    });
+}
+
+
+async function getcategorymovies(id) {
+
+    const { data } = await api("/discover/movie" ,{ params:{
+        with_genres : id,
+    }
+} );
+    const movies = data.results;
+    
+    console.log("hoaf")
+    movies.forEach(movie => {
+
+
+
+        const movieconteiner = document.createElement("div")
+        movieconteiner.classList.add("imagen-categorias")
+
+
+        const categorytext = document.createTextNode(movie.title)
+
+
+        const namedelapeli = document.createElement("h3")
+        namedelapeli.appendChild(categorytext)
+        namedelapeli.classList.add("texoth3")
+
+        const movieimg = document.createElement("img");
+        movieimg.classList.add("imagen-de-la-peli");
+        movieimg.setAttribute("alt", movie.title)
+        movieimg.setAttribute("src", "https://image.tmdb.org/t/p/w300" + movie.poster_path);
+
+
+        movieconteiner.appendChild(movieimg)
+        movieconteiner.appendChild(namedelapeli)
+
+        img_categorias.appendChild(movieconteiner)
+    });
+}
