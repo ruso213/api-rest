@@ -121,11 +121,19 @@ function trend(){
     gettrendingtv()
     getcategorispreview()
 
+    quivanlasimgs.classList.remove("inactive")
+    tendencia.classList.remove("inactive")
+    categoria_titulo.classList.remove("inactive")
+    categorias_botones.classList.remove("inactive")
+    categorias.classList.remove("inactive")
+
     div_boton.classList.remove("inactive")
 
     tendencia_tv_contenedor.classList.remove("inactive")
     trendingpreview.classList.remove("tendencias-imagenes")
     trendingpreview.classList.add("aqui-van-las-imgs-trend")
+    contenedor_img_categorias.classList.add("inactive")
+    buscado.classList.add("inactive")
 
     tendencias_boton_ver_menos.classList.remove("inactive")
     tendencias_boton.classList.add("inactive")
@@ -142,6 +150,7 @@ function categoria(){
   
     div_boton.classList.remove("inactive")
 
+    buscado.classList.add("inactive")
 
     tendencia_tv_contenedor.classList.add("inactive")
     quivanlasimgs.classList.add("inactive")

@@ -129,6 +129,7 @@ async function getcategorymovies(id) {
 } );
     const movies = data.results;
    
+    img_categorias.innerHTML = ""
 
     movies.forEach(movie => {
 
