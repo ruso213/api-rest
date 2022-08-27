@@ -1,4 +1,9 @@
 
+searchformbuton.addEventListener("click", ()=>{
+    location.hash = ("#search=" + searchinput.value)
+})
+
+
 function clickvermas(){
     location.hash = "trend"
 }
@@ -6,7 +11,10 @@ function clickvermas(){
 function clicklogo(){
     location.hash = "home"
 }
-
+function searchbutton(){
+    location.hash = "search"
+    
+}
 
 
 
@@ -34,14 +42,18 @@ function navigator (){
     if(location.hash.startsWith("#trend")){
         trend()
 
-    }else if(location.hash.startsWith("#home")){
+    }
+    else if(location.hash.startsWith("#home")){
         home()
     }
     else if(location.hash.startsWith("#category")){
         categoria()
-    }else if(location.hash.startsWith("")){
+    }
+    else if(location.hash.startsWith("#search")){
+        search()
+
+    } else if(location.hash.startsWith("")){
         home()
-        console.log("dsfafasd")
 
     }
     else {
@@ -49,10 +61,26 @@ function navigator (){
     }
 }
     
+
+function search() {
+        console.log("hola")
+
+        tendencia.classList.add("inactive")
+        categoria_titulo.classList.add("inactive")
+        trendingpreview.classList.add("inactive")
+        quivanlasimgs.classList.add("inactive")
+        categorias.classList.add("inactive")
+        contenedor_img_categorias.classList.add("inactive")
+        tendencia_tv_contenedor.classList.add("inactive")
+        
+
+    }
+
+
+
 function home(){
     getcategorispreview()
     gettrendingpelis()
-    console.log("home")
 
 
     
@@ -70,6 +98,7 @@ function home(){
 
 function trend(){
     gettrendingtv()
+    getcategorispreview()
 
     tendencia_tv_contenedor.classList.remove("inactive")
     trendingpreview.classList.remove("tendencias-imagenes")

@@ -10,6 +10,11 @@ const categorias = document.querySelector(".categorias")
 const categorias_botones = document.querySelector(".categorias-botones")
 console.log(categorias)
 
+//search
+const searchinput = document.querySelector("#searchinput")
+const searchformbuton = document.querySelector("#searchformbuton")
+
+
 
 
 //tendencias

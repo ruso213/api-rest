@@ -137,9 +137,15 @@ body::-webkit-scrollbar-thumb:hover{
 
 
 .busqueda{
-    padding: 40px 5vw 40px 5vw;    display: grid;
+    padding: 20px 5vw 20px 5vw;    display: grid;
     grid-template-columns: 50fr 1fr;
 }
+.searchform{
+    padding: 20px 5vw 20px 5vw;    display: grid;
+    grid-template-columns: 50fr 1fr;
+}
+
+
 
 .buscador{
     font-size: 35px;

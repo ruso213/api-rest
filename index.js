@@ -53,7 +53,6 @@ async function getcategorispreview() {
 
     const { data } = await api("/genre/movie/list?api_key=" + apikey);
     const categorias = data.genres;
-    console.log(categorias)
 
     categorias_botones.innerHTML = ""
 
@@ -81,6 +80,9 @@ async function getcategorispreview() {
 
     });
 }
+
+
+
 
 async function gettrendingpelis() {
 
@@ -125,8 +127,8 @@ async function getcategorymovies(id) {
     }
 } );
     const movies = data.results;
-    
-    console.log("hoaf")
+   
+
     movies.forEach(movie => {
 
 
