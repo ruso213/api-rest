@@ -1,7 +1,5 @@
-
-searchformbuton.addEventListener("click", ()=>{
-    location.hash = ("#search=" + searchinput.value)
-})
+searchformbuton.addEventListener("click", ()=>
+    location.hash = ("search-" + searchinput.value))
 
 
 function clickvermas(){
@@ -38,7 +36,7 @@ const eliminarhijo = function (padre, hijo){
 window.addEventListener("DOMcontentLoaded" , navigator , false)
 window.addEventListener("hashchange" , navigator , false)
 
-function navigator (){
+async function navigator (){
     if(location.hash.startsWith("#trend")){
         trend()
 
@@ -62,18 +60,15 @@ function navigator (){
 }
     
 
-function search() {
+async function search() {
         console.log("hola")
-
+        
         tendencia.classList.add("inactive")
-        categoria_titulo.classList.add("inactive")
         trendingpreview.classList.add("inactive")
-        quivanlasimgs.classList.add("inactive")
+        tendencia_tv_contenedor.classList.add("inactive")
+        categoria_titulo.classList.add("inactive")
         categorias.classList.add("inactive")
         contenedor_img_categorias.classList.add("inactive")
-        tendencia_tv_contenedor.classList.add("inactive")
-        
-
     }
 
 
