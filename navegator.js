@@ -1,6 +1,13 @@
+window.addEventListener("DOMcontentLoaded" , navigator , false)
+window.addEventListener("hashchange" , navigator , false)
+
 searchformbuton.addEventListener("click", ()=>
     location.hash = ("search-" + searchinput.value))
 
+
+    flecha_button.addEventListener("click", ()=>{
+        history.back()
+    })
 
 function clickvermas(){
     location.hash = "trend"
@@ -13,7 +20,7 @@ function searchbutton(){
     location.hash = "search"
     
 }
-
+location.hash = "home"
 
 
 const $ = (id) => document.querySelector(id);
@@ -33,8 +40,7 @@ const eliminarhijo = function (padre, hijo){
     }
 
 
-window.addEventListener("DOMcontentLoaded" , navigator , false)
-window.addEventListener("hashchange" , navigator , false)
+
 
 async function navigator (){
     if(location.hash.startsWith("#trend")){
@@ -62,6 +68,8 @@ async function navigator (){
 
 async function search() {
         
+    div_boton.classList.remove("inactive")
+
         
         categorias_imagenes_buscado.classList.remove("inactive")
         buscado.classList.remove("inactive")
@@ -85,13 +93,22 @@ async function search() {
 function home(){
     getcategorispreview()
     gettrendingpelis()
+    getcategorispreview()
 
 
-    
+    tendencia.classList.remove("inactive")
+    trendingpreview.classList.remove("inactive")
+    categorias.classList.remove("inactive")
+    quivanlasimgs.classList.remove("inactive")
+    categorias_botones.classList.remove("inactive")
 
 
+    contenedor_img_categorias.classList.add("inactive")
+    buscado.classList.add("inactive")
+
+    div_boton.classList.add("inactive")
     tendencia_tv_contenedor.classList.add("inactive")
-
+    
     trendingpreview.classList.remove("aqui-van-las-imgs-trend")
     trendingpreview.classList.add("tendencias-imagenes")
     tendencias_boton_ver_menos.classList.add("inactive")
@@ -103,6 +120,8 @@ function home(){
 function trend(){
     gettrendingtv()
     getcategorispreview()
+
+    div_boton.classList.remove("inactive")
 
     tendencia_tv_contenedor.classList.remove("inactive")
     trendingpreview.classList.remove("tendencias-imagenes")
@@ -121,6 +140,7 @@ function trend(){
 function categoria(){
 
   
+    div_boton.classList.remove("inactive")
 
 
     tendencia_tv_contenedor.classList.add("inactive")

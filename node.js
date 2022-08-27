@@ -3,7 +3,6 @@ const contenedor =  document.querySelector(".contenedor")
 
 
 
-
 //categorias
 const categoria_titulo =  document.querySelector(".achedos")
 const categorias = document.querySelector(".categorias")
@@ -48,3 +47,7 @@ const img_categorias = document.querySelector(".categorias-imagenes")
 
 const buscado = document.querySelector(".buscado")
 const categorias_imagenes_buscado = document.querySelector(".categorias-imagenes-buscado")
+
+//flecha mamalona
+const div_boton = document.querySelector(".div-boton")
+const flecha_button = document.querySelector(".flecha-button")
