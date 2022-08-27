@@ -50,18 +50,6 @@ async function gettrendingtv() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 async function getsearchmovies(id) {
 
     const { data } = await api("/search/movie" ,{ params:{
@@ -97,27 +85,6 @@ async function getsearchmovies(id) {
 
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 async function gettrendingpelis() {

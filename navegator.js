@@ -66,7 +66,7 @@ async function search() {
         categorias_imagenes_buscado.classList.remove("inactive")
         buscado.classList.remove("inactive")
 
-        
+        quivanlasimgs.classList.add("inactive")
         tendencia.classList.add("inactive")
         trendingpreview.classList.add("inactive")
         tendencia_tv_contenedor.classList.add("inactive")
