@@ -414,4 +414,11 @@ body::-webkit-scrollbar-thumb:hover{
     flex-wrap: wrap;
 }
 
+.categorias-imagenes-buscado{
+    padding-left: 45px;
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 

@@ -61,7 +61,11 @@ async function navigator (){
     
 
 async function search() {
-        console.log("hola")
+        
+        
+        categorias_imagenes_buscado.classList.remove("inactive")
+        buscado.classList.remove("inactive")
+
         
         tendencia.classList.add("inactive")
         trendingpreview.classList.add("inactive")
@@ -69,7 +73,12 @@ async function search() {
         categoria_titulo.classList.add("inactive")
         categorias.classList.add("inactive")
         contenedor_img_categorias.classList.add("inactive")
-    }
+
+
+        const  query = location.hash.split("-")[1]
+        getsearchmovies(query)
+        console.log(query)
+     }
 
 
 
@@ -102,20 +111,7 @@ function trend(){
     tendencias_boton_ver_menos.classList.remove("inactive")
     tendencias_boton.classList.add("inactive")
 
-    
-    
-    /* console.log(categorias)
-    categorias.classList.add("inactive")
-    categoria_titulo.classList.add("inactive")
 
-    
-    trendingpreview.classList.remove("tendencias-imagenes")
-    trendingpreview.classList.add("tendencia-arriba-trend")
-
-    tendencias_texto.classList.remove("tendencias-texto")
-    tendencias_texto.classList.add("tendencias-texto-trend")
-    quivanlasimgs.classList.remove("aqui-van-las-imgs") 
-    quivanlasimgs.classList.add("imagenes-trend")  */
 
     
     
@@ -124,6 +120,7 @@ function trend(){
 
 function categoria(){
 
+  
 
 
     tendencia_tv_contenedor.classList.add("inactive")

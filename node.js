@@ -41,3 +41,10 @@ const scrollbartendencias = document.querySelector(".tendencias-imagenes")
 
 const contenedor_img_categorias = document.querySelector(".contenedor-de-las-imagenes-categorias")
 const img_categorias = document.querySelector(".categorias-imagenes")
+
+
+
+//search
+
+const buscado = document.querySelector(".buscado")
+const categorias_imagenes_buscado = document.querySelector(".categorias-imagenes-buscado")
