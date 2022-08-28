@@ -12,6 +12,10 @@ const api = axios.create({
     }
 })
 
+
+
+
+
 async function gettrendingtv() {
 
     const { data } = await api("/tv/popular?api_key=" + apikey);
@@ -38,8 +42,9 @@ async function gettrendingtv() {
 
 
         movieconteiner.addEventListener("click", ()=>{
-            console.log("hola")
-        })
+            const movie_id = movie.id
+            location.hash = `#movie=${movie_id}=${movie.original_name}`
+            console.log(movie.original_name , movie_id)        })
 
         const movieimg = document.createElement("img");
         movieimg.classList.add("imagen-de-la-peli");
@@ -68,6 +73,7 @@ async function getsearchmovies(id) {
 
         //añadir el addeventlistener
         
+        
 
         const movieconteiner = document.createElement("div")
         movieconteiner.classList.add("imagen-categorias")
@@ -88,9 +94,16 @@ async function getsearchmovies(id) {
         movieconteiner.appendChild(namedelapeli)
 
 
+        movieconteiner.addEventListener("click", ()=>{
+            const movie_id = movie.id
+            const movietitle = movie.title
+            location.hash = `#movie=${movie_id}=${movietitle}`
+
+            console.log(movie.title , movie_id)        })
     });
 }
 
+//este es el de peliculsa trending
 
 async function gettrendingpelis() {
 
@@ -112,8 +125,11 @@ async function gettrendingpelis() {
 
         
         movieconteiner.addEventListener("click", ()=>{
-            console.log("hola")
-        })
+            const movie_id = movie.id
+            const movietitle = movie.title
+            location.hash = `#movie=${movie_id}=${movietitle}`
+            
+            console.log(movietitle , movie_id)        })
 
         const namedelapeli = document.createElement("h3")
         namedelapeli.appendChild(categorytext)
@@ -130,6 +146,13 @@ async function gettrendingpelis() {
         trendingpreview.appendChild(movieconteiner)
     });
 }
+
+
+
+
+
+//este es el click de las categorias 
+
 async function getcategorymovies(id) {
 
     const { data } = await api("/discover/movie" ,{ params:{
@@ -161,7 +184,10 @@ async function getcategorymovies(id) {
         movieimg.setAttribute("src", "https://image.tmdb.org/t/p/w300" + movie.poster_path);
 
         movieconteiner.addEventListener("click", ()=>{
-            console.log("hola")
+           
+            const movie_id = movie.id
+            location.hash = `#movie=${movie_id}=${movie.title}`      
+            console.log(movie.title , movie_id)
         })
 
         movieconteiner.appendChild(movieimg)
@@ -170,6 +196,23 @@ async function getcategorymovies(id) {
         img_categorias.appendChild(movieconteiner)
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 async function getcategorispreview() {
 

@@ -59,15 +59,40 @@ async function navigator (){
     else if(location.hash.startsWith("#search")){
         search()
 
-    } else if(location.hash.startsWith("")){
+    } else if(location.hash.startsWith("#movie")){
+        movie()
+
+    }else if(location.hash.startsWith("")){
         home()
 
     }
+    
     else {
         home()
     }
 }
     
+
+async function movie() {
+    console.log("joa")
+
+
+
+    quivanlasimgs.classList.add("inactive")
+    tendencia.classList.add("inactive")
+    trendingpreview.classList.add("inactive")
+    tendencia_tv_contenedor.classList.add("inactive")
+    categoria_titulo.classList.add("inactive")
+    categorias.classList.add("inactive")
+    contenedor_img_categorias.classList.add("inactive")
+    buscado.classList.add("inactive")
+    div_boton.classList.add("inactive")
+    tendencia.classList.add("inactive")
+
+    const [_ , moviebyID] = location.hash.split("=")
+    console.log(moviebyID)
+
+}
 
 async function search() {
         
@@ -90,8 +115,6 @@ async function search() {
         getsearchmovies(query)
         console.log(query)
      }
-
-
 
 function home(){
     getcategorispreview()
