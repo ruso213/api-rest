@@ -1,13 +1,16 @@
+ 
 window.addEventListener("DOMcontentLoaded" , navigator , false)
 window.addEventListener("hashchange" , navigator , false)
 
-searchformbuton.addEventListener("click", ()=>
-    location.hash = ("search-" + searchinput.value))
+searchformbuton.addEventListener("click", ()=> {location.hash = ("search-" + searchinput.value)})
 
 
     flecha_button.addEventListener("click", ()=>{
         history.back()
-    })
+        })
+
+
+         
 
 function clickvermas(){
     location.hash = "trend"

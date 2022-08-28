@@ -14,7 +14,8 @@ const searchinput = document.querySelector("#searchinput")
 const searchformbuton = document.querySelector("#searchformbuton")
 
 
-
+//imagen
+const imagen_de_la_peli = document.querySelector(".imagen-de-la-peli")
 
 //tendencias
 const trendingpreview = document.querySelector(".tendencias-imagenes")

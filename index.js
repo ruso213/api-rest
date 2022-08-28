@@ -37,6 +37,10 @@ async function gettrendingtv() {
         
 
 
+        movieconteiner.addEventListener("click", ()=>{
+            console.log("hola")
+        })
+
         const movieimg = document.createElement("img");
         movieimg.classList.add("imagen-de-la-peli");
         movieimg.setAttribute("alt", movie.title)
@@ -62,7 +66,8 @@ async function getsearchmovies(id) {
 
     movies.forEach(movie => {
 
-
+        //añadir el addeventlistener
+        
 
         const movieconteiner = document.createElement("div")
         movieconteiner.classList.add("imagen-categorias")
@@ -105,6 +110,10 @@ async function gettrendingpelis() {
 
         const categorytext = document.createTextNode(movie.title)
 
+        
+        movieconteiner.addEventListener("click", ()=>{
+            console.log("hola")
+        })
 
         const namedelapeli = document.createElement("h3")
         namedelapeli.appendChild(categorytext)
@@ -151,6 +160,9 @@ async function getcategorymovies(id) {
         movieimg.setAttribute("alt", movie.title)
         movieimg.setAttribute("src", "https://image.tmdb.org/t/p/w300" + movie.poster_path);
 
+        movieconteiner.addEventListener("click", ()=>{
+            console.log("hola")
+        })
 
         movieconteiner.appendChild(movieimg)
         movieconteiner.appendChild(namedelapeli)
@@ -167,6 +179,8 @@ async function getcategorispreview() {
     categorias_botones.innerHTML = ""
 
     categorias.forEach(categorys => {
+
+
 
         const categoriepreview = document.querySelector("#contenedor-de-categoritas .categorias-botones")
 
@@ -190,7 +204,6 @@ async function getcategorispreview() {
 
     });
 }
-
 
 
 
