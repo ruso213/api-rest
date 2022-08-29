@@ -76,7 +76,8 @@ async function navigator (){
 async function movie() {
     console.log("joa")
 
-
+    detail.classList.remove("inactive")
+    div_boton.classList.remove("inactive")
 
     quivanlasimgs.classList.add("inactive")
     tendencia.classList.add("inactive")
@@ -86,11 +87,12 @@ async function movie() {
     categorias.classList.add("inactive")
     contenedor_img_categorias.classList.add("inactive")
     buscado.classList.add("inactive")
-    div_boton.classList.add("inactive")
     tendencia.classList.add("inactive")
 
     const [_ , moviebyID] = location.hash.split("=")
-    console.log(moviebyID)
+    console.log(moviebyID )
+
+
 
 }
 
@@ -98,7 +100,8 @@ async function search() {
         
     div_boton.classList.remove("inactive")
 
-        
+    detail.classList.add("inactive")
+
         categorias_imagenes_buscado.classList.remove("inactive")
         buscado.classList.remove("inactive")
 
@@ -121,7 +124,7 @@ function home(){
     gettrendingpelis()
     getcategorispreview()
 
-
+    detail.classList.add("inactive")
     tendencia.classList.remove("inactive")
     trendingpreview.classList.remove("inactive")
     categorias.classList.remove("inactive")
@@ -146,6 +149,8 @@ function home(){
 function trend(){
     gettrendingtv()
     getcategorispreview()
+
+    detail.classList.add("inactive")
 
     quivanlasimgs.classList.remove("inactive")
     tendencia.classList.remove("inactive")
@@ -175,6 +180,7 @@ function categoria(){
 
   
     div_boton.classList.remove("inactive")
+    detail.classList.add("inactive")
 
     buscado.classList.add("inactive")
 
@@ -188,7 +194,7 @@ function categoria(){
 
     const [_ , categoryinfo] = location.hash.split("=")
     const [categoryid , categoryname] = categoryinfo.split("-")
-    getcategorymovies(categoryid)
+    getcategorymovies(categoryid , "a" , "/search/movie")
     categoria_titulo.textContent = categoryname
 
     contenedor_img_categorias.classList.remove("inactive")

@@ -59,10 +59,21 @@ body::-webkit-scrollbar-thumb:hover{
     margin-right: 10px;
     border-radius: 10px;
 }
+
+.imagen-de-la-peli:hover{
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.377), 10px 10px 20px rgb(0 0 0 / 23%);
+
+}
 .imagen-categorias .texoth3{
     margin-bottom: 20px;
 
     color: var(--moradofuerte);
+}
+
+.imagen-categorias:hover{
+    color:var(--rojomamalon) ;
+    transition-duration: .3s;
+    transform: translateY(-10px) ;
 }
 
 .imagen-categorias{
@@ -274,6 +285,31 @@ body::-webkit-scrollbar-thumb:hover{
     color:var(--moradofuerte) ;
 }
 
+.botones_sugerencias{
+    display:flex;
+    margin-top:20px;
+    justify-content: center;
+}
+
+
+
+.botones_sugerencias button:hover{
+    background-color: var(--rojomamalon);
+    color: rgb(255 255 255);
+    transition-duration: .5s;
+}
+.botones_sugerencias button{
+    margin-right: 20px;
+    color: var(--moradonofuerte);
+    background-color: var(--moradofuerte);
+    border-radius: 5px;
+    display: flex;
+    font-size: 25px;
+    padding: 20px;
+    cursor: pointer;
+    border: 0px;
+}
+
 .imagen-de-la-peli{
     max-width: 200px;   
 }
@@ -341,12 +377,7 @@ body::-webkit-scrollbar-thumb:hover{
     border: 0px;
 }
 
-.imagen-tendencias :hover{
-    color:var(--rojomamalon) ;
-    transition-duration: .3s;
-    transform: translateY(-10px) ;
 
-}
 
 .achedos{
     margin-left: 30px;
@@ -398,9 +429,11 @@ body::-webkit-scrollbar-thumb:hover{
 
 .aqui-van-las-imgs-tv{
     display: flex;
-    overflow-x: auto    ;
+    overflow-x: auto;
+    height: 400px;
     margin-left: 27px;
     margin-top: 30px;
+    align-items: center;
     
 }
 
@@ -482,6 +515,12 @@ body::-webkit-scrollbar-thumb:hover{
     cursor:pointer;
 
 }
+
+.imagen-tendencias :hover{
+    transform: translateY(-10px) ;
+    transition-duration: .3s;
+    cursor:pointer;
+}
 .categorias-imagenes .imagen-categorias:hover{
     transform: translateY(-10px) ;
     transition-duration: .3s;
@@ -500,4 +539,102 @@ body::-webkit-scrollbar-thumb:hover{
     margin-left: 30px;
     margin-top: 40px;
     position: fixed;
+}
+
+
+
+
+
+/* fasfasfasfasfasfdasfadsfasfasf */
+.detail{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.imagen_de_la_pelicula_clickeada{
+    border-radius: 20px;
+}
+.contenedor_img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0 40px 0 40px;
+    background-color: rgba(0, 0, 0, 0.233);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.377), 0 1px 2px rgb(0 0 0 / 23%);
+}
+.texto{
+    display: grid;
+    grid-template-rows: .3fr 1fr;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.nombre_de_la_peli_y_puntuacion{
+    grid-area: 1/1/2/3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 20px 0 20px;
+    position: relative;
+    top: -60px;
+
+}
+
+.resumen{
+    grid-area: 2/1/3/3;
+    margin: 40px 20px 0 20px;
+
+}
+
+.peliculas_similares{
+    margin-top:40px;
+}
+.imagen_de_las_peliculas_similares{
+    margin-top:20px;
+}
+
+.peliculas_similares_y_categorias{
+    margin-top:70px;
+}
+
+.que_Categoria_Son{
+    margin-top:20px;
+
+}
+
+.contenedor_de_la_imagen_recomendadas{
+    flex-direction: column;
+    align-items: center;
+    display:flex;
+}
+
+.imagen_de_las_peliculas_similares{
+    display:flex;
+}
+
+.contenedor_de_la_imagen_recomendadasvs img{
+    border-radius:20px;
+    
+}
+.contenedor_de_la_imagen_recomendadasvs{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    width: 207px;
+    display: flex;
+    padding :10px;
+    margin: 0 7px 20px 0px;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    border-radius:20px;
+}
+.contenedor_de_la_imagen_recomendadasvs:hover{
+    transform: translateY(-10px);
+    transition-duration: .3s;
+    cursor: pointer;
+    box-shadow: 0 20px 20px rgb(0 0 0 / 38%), 10px 10px 20px rgb(0 0 0 / 23%);
 }

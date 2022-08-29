@@ -2,6 +2,40 @@
 const contenedor =  document.querySelector(".contenedor")
 
 
+//detail
+
+const detail = document.querySelector(".detail")
+
+const contenedor_img= document.querySelector(".contenedor_img")
+const imagen_de_la_pelicula_clickeada = document.querySelector(".imagen_de_la_pelicula_clickeada")
+const imagen_de_la_pelicula_clickeadavs = document.querySelector(".imagen_de_la_pelicula_clickeadavs")
+
+const texto = document.querySelector(".texto")
+const nombre_de_la_peli_y_puntuacion= document.querySelector(".nombre_de_la_peli_y_puntuacion")
+const resumen = document.querySelector(".resumen")
+const nombre_de_la_peli = document.querySelector(".nombre_de_la_peli")
+const puntuacion = document.querySelector(".puntuacion")
+
+
+
+//peliculas similares
+
+const peliculas_similares_y_categorias = document.querySelector(".peliculas_similares_y_categorias")
+
+
+const que_Categoria_Son = document.querySelector(".que_Categoria_Son")
+const botones_sugerencias = document.querySelector(".botones_sugerencias")
+
+const peliculas_similares = document.querySelector(".peliculas_similares")
+const imagen_de_las_peliculas_similares = document.querySelector(".imagen_de_las_peliculas_similares")
+
+
+const contenedor_de_la_imagen_recomendadas = document.querySelector(".contenedor_de_la_imagen_recomendadas")
+const contenedor_de_la_imagen_recomendadasvs = document.querySelector(".contenedor_de_la_imagen_recomendadasvs")
+const nombre_De_la_pelicula_recomendada = document.querySelector(".nombre_De_la_pelicula_recomendada")
+const nombre_De_la_pelicula_recomendadavs = document.querySelector(".nombre_De_la_pelicula_recomendadavs")
+
+
 
 //categorias
 const categoria_titulo =  document.querySelector(".achedos")

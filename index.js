@@ -13,6 +13,110 @@ const api = axios.create({
 })
 
 
+async function getmoviedetails(id){
+    
+    const  {data:movie}  = await api("/movie/"+ id );
+    const data = movie.genres
+
+    botones_sugerencias.innerHTML = ""
+
+    resumen.innerHTML = movie.overview
+    nombre_de_la_peli.innerHTML = movie.title
+    puntuacion.innerHTML = `⭐ ${movie.vote_average}`
+    imagen_de_la_pelicula_clickeada.src = "https://image.tmdb.org/t/p/w300"+ movie.poster_path
+    console.log(imagen_de_la_pelicula_clickeada)
+    
+    
+    
+    data.forEach(movies => {
+
+        
+
+        const botonesmovies = document.createElement("button")
+        const textodelboton = document.createTextNode (movies.name)
+        botonesmovies.appendChild(textodelboton)
+        botones_sugerencias.appendChild(botonesmovies)
+        botonesmovies.addEventListener("click" , ()=>{
+            location.hash =`#category=${movies.id}-${movies.name}`;
+        })
+
+        
+
+        getreloadedmoviesbyid(id)
+        /* const imagen_de_las_peliculas_similaresvs = document.createElement("img")
+        imagen_de_las_peliculas_similaresvs.src = "https://image.tmdb.org/t/p/w300" + "" */
+        contenedor_de_la_imagen_recomendadasvs.addEventListener("click", ()=>{
+            const movie_id = movies.id
+            location.hash = `#movie=${movies.id}=${movies.name}`
+            getmoviedetails(movie_id)
+            return
+        })
+        
+    })
+}
+
+async function getreloadedmoviesbyid(id){
+    const  {data:movie}  = await api("/movie/"+ id + "/recommendations" );
+    const data = movie.results
+    
+            
+    data.forEach(movies =>{
+         
+        imagen_de_la_pelicula_clickeadavs.src = `https://image.tmdb.org/t/p/w300${movies.poster_path}`
+        nombre_De_la_pelicula_recomendadavs.innerHTML = movies.title
+        contenedor_de_la_imagen_recomendadasvs.appendChild(imagen_de_la_pelicula_clickeadavs)
+        contenedor_de_la_imagen_recomendadasvs.appendChild(nombre_De_la_pelicula_recomendadavs)
+
+        
+    })
+
+}
+
+
+async function getcategorispreview() {
+
+    const { data } = await api("/genre/movie/list?api_key=" + apikey);
+    const categorias = data.genres;
+
+    categorias_botones.innerHTML = ""
+
+    categorias.forEach(categorys => {
+
+
+
+        const categoriepreview = document.querySelector("#contenedor-de-categoritas .categorias-botones")
+
+        const categorycontainerssssss = document.createElement("div")
+        categorycontainerssssss.classList.add("category-lista")
+
+
+
+        const categortconteiner = document.createElement("button")
+        categortconteiner.classList.add("botones")
+        categortconteiner.setAttribute("id", categorys.name)
+        categortconteiner.addEventListener("click" , ()=>{
+            location.hash =`#category=${categorys.id}-${categorys.name}`;
+        })
+
+        const categorytext = document.createTextNode(categorys.name)
+
+        categortconteiner.appendChild(categorytext)
+        categorycontainerssssss.appendChild(categortconteiner)
+        categoriepreview.appendChild(categorycontainerssssss)
+
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -44,7 +148,9 @@ async function gettrendingtv() {
         movieconteiner.addEventListener("click", ()=>{
             const movie_id = movie.id
             location.hash = `#movie=${movie_id}=${movie.original_name}`
-            console.log(movie.original_name , movie_id)        })
+            console.log(movie.original_name , movie_id)      
+            getmoviedetails(movie_id)
+        })
 
         const movieimg = document.createElement("img");
         movieimg.classList.add("imagen-de-la-peli");
@@ -56,6 +162,24 @@ async function gettrendingtv() {
         trendingpreview.appendChild(movieconteiner)
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -80,7 +204,7 @@ async function getsearchmovies(id) {
 
         const namedelapeli = document.createElement("h3")
         namedelapeli.classList.add("texoth3")
-        const categorytext = document.createTextNode(movie.original_title)
+        const categorytext = document.createTextNode(movie.title)
         namedelapeli.appendChild(categorytext)
 
         const movieimg = document.createElement("img");
@@ -98,10 +222,26 @@ async function getsearchmovies(id) {
             const movie_id = movie.id
             const movietitle = movie.title
             location.hash = `#movie=${movie_id}=${movietitle}`
+            getmoviedetails(movie_id)
+
 
             console.log(movie.title , movie_id)        })
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //este es el de peliculsa trending
 
@@ -128,7 +268,8 @@ async function gettrendingpelis() {
             const movie_id = movie.id
             const movietitle = movie.title
             location.hash = `#movie=${movie_id}=${movietitle}`
-            
+            getmoviedetails(movie_id)
+
             console.log(movietitle , movie_id)        })
 
         const namedelapeli = document.createElement("h3")
@@ -146,6 +287,19 @@ async function gettrendingpelis() {
         trendingpreview.appendChild(movieconteiner)
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -188,6 +342,8 @@ async function getcategorymovies(id) {
             const movie_id = movie.id
             location.hash = `#movie=${movie_id}=${movie.title}`      
             console.log(movie.title , movie_id)
+            getmoviedetails(movie_id)
+
         })
 
         movieconteiner.appendChild(movieimg)
@@ -214,39 +370,7 @@ async function getcategorymovies(id) {
 
 
 
-async function getcategorispreview() {
 
-    const { data } = await api("/genre/movie/list?api_key=" + apikey);
-    const categorias = data.genres;
-
-    categorias_botones.innerHTML = ""
-
-    categorias.forEach(categorys => {
-
-
-
-        const categoriepreview = document.querySelector("#contenedor-de-categoritas .categorias-botones")
-
-        const categorycontainerssssss = document.createElement("div")
-        categorycontainerssssss.classList.add("category-lista")
-
-
-
-        const categortconteiner = document.createElement("button")
-        categortconteiner.classList.add("botones")
-        categortconteiner.setAttribute("id", categorys.name)
-        categortconteiner.addEventListener("click" , ()=>{
-            location.hash =`#category=${categorys.id}-${categorys.name}`;
-        })
-
-        const categorytext = document.createTextNode(categorys.name)
-
-        categortconteiner.appendChild(categorytext)
-        categorycontainerssssss.appendChild(categortconteiner)
-        categoriepreview.appendChild(categorycontainerssssss)
-
-    });
-}
 
 
 
