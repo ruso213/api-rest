@@ -59,7 +59,7 @@ async function navigator (){
     else if(location.hash.startsWith("#search")){
         search()
 
-    } else if(location.hash.startsWith("#movie")){
+    } else if(!location.hash.startsWith("#movie=a")){
         movie()
 
     }else if(location.hash.startsWith("")){

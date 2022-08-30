@@ -17,52 +17,55 @@ const api = axios.create({
 
 
 
-async function getmoviedetails(id , name){
+async function getmoviedetailsmovies(id , name ,movies  , url){
     
-    const  {data:movie}  = await api("/movie/"+ id );
-    const data = movie.genres
-
     
+    const  {data:movie}  = await api(`/${url}/`+ id );
     botones_sugerencias.innerHTML = ""
-
-    
-    
-    data.forEach(movies => {
-
-        resumen.innerHTML = movie.overview
-    nombre_de_la_peli.innerHTML = movie.name
-    puntuacion.innerHTML = `⭐ ${movie.vote_average}`
-    imagen_de_la_pelicula_clickeada.src = "https://image.tmdb.org/t/p/w300"+ movie.poster_path
+    const asa = movie.genres
+    console.log(asa)
     console.log(imagen_de_la_pelicula_clickeada)
-    
 
+
+    asa.forEach(moviesr2 =>{
         const botonesmovies = document.createElement("button")
-        const textodelboton = document.createTextNode (movies.name)
+        const textodelboton = document.createTextNode (moviesr2.name)
         botonesmovies.appendChild(textodelboton)
         botones_sugerencias.appendChild(botonesmovies)
         botonesmovies.addEventListener("click" , ()=>{
-            location.hash =`#category=${movies.id}-${movies.name}`;
+            location.hash =`#category=${moviesr2.name}-${moviesr2.id}`;
 
         })
        
+    })
+
+    movies.forEach(movies => {
+
+        resumen.innerHTML = movie.overview
+        nombre_de_la_peli.innerHTML = movie[name]
+        puntuacion.innerHTML = `⭐ ${movie.vote_average}`
+        imagen_de_la_pelicula_clickeada.src = "https://image.tmdb.org/t/p/w300"+ movie.poster_path
+    
+
+        
         getreloadedmoviesbyid(id)
     })
 }
 
 async function getreloadedmoviesbyid(id){
     const  {data:movie}  = await api("/movie/"+ id + "/recommendations" );
-    const data = movie.results
+    const movies = movie.results
 
     contenedor_de_la_imagen_recomendadasvs.innerHTML =""
             
-    data.forEach(movies =>{
+    movies.forEach(movies2 =>{
         
         const imagendelapeliculaclickeadavs = document.createElement("img")
         imagendelapeliculaclickeadavs.classList.add("imagen_de_la_pelicula_clickeadavs")
-        imagendelapeliculaclickeadavs.src= `https://image.tmdb.org/t/p/w300${movies.poster_path}`
+        imagendelapeliculaclickeadavs.src= `https://image.tmdb.org/t/p/w300${movies2.poster_path}`
 
         const nombreDelapelicularecomendadavs = document.createElement("h3")
-        nombreDelapelicularecomendadavs.innerHTML = movies.title
+        nombreDelapelicularecomendadavs.innerHTML = movies2.title
         
         const divdelcontenedor = document.createElement("div")
         divdelcontenedor.classList.add("contenedordiv")
@@ -73,8 +76,8 @@ async function getreloadedmoviesbyid(id){
     
         imagendelapeliculaclickeadavs.addEventListener("click", () =>{
             
-            location.hash =`#movie=${movies.id}=${movies.title}` 
-            getmoviedetails(movies.id)
+            location.hash =`#movie=${movies2.id}=${movies2.title}` 
+            getmoviedetailsmovies(movies2.id ,"original_title" ,movies  , "movie")
         })
     })
 
@@ -145,7 +148,7 @@ async function gettrendingtv() {
             const movie_id = movie.id
             location.hash = `#movie=${movie_id}=${movie.original_name}`
             console.log(movie.original_name , movie_id)      
-            getmoviedetails(movie_id)
+            getmoviedetailsmovies(movie_id , "name" , movies,  "tv")
         })
 
         const movieimg = document.createElement("img");
@@ -198,7 +201,7 @@ async function getsearchmovies(id) {
             const movie_id = movie.id
             const movietitle = movie.title
             location.hash = `#movie=${movie_id}=${movietitle}`
-            getmoviedetails(movie_id)
+            getmoviedetailsmovies(movie_id , "original_title" , movies,  "movie")
 
 
             console.log(movie.title , movie_id)        })
@@ -230,7 +233,7 @@ async function gettrendingpelis() {
             const movie_id = movie.id
             const movietitle = movie.title
             location.hash = `#movie=${movie_id}=${movietitle}`
-            getmoviedetails(movie_id)
+            getmoviedetailsmovies(movie_id , "original_title" , movies , "movie")
 
             console.log(movietitle , movie_id)        })
 
@@ -287,7 +290,7 @@ async function getcategorymovies(id) {
             const movie_id = movie.id
             location.hash = `#movie=${movie_id}=${movie.title}`      
             console.log(movie.title , movie_id)
-            getmoviedetails(movie_id)
+            getmoviedetailsmovies(movie_id , "original_title" , movies , "movie" )
 
         })
 
