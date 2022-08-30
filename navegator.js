@@ -90,7 +90,6 @@ async function movie() {
     tendencia.classList.add("inactive")
 
     const [_ , moviebyID] = location.hash.split("=")
-    console.log(moviebyID )
 
 
 

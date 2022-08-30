@@ -13,24 +13,28 @@ const api = axios.create({
 })
 
 
-async function getmoviedetails(id){
+
+
+
+
+async function getmoviedetails(id , name){
     
     const  {data:movie}  = await api("/movie/"+ id );
     const data = movie.genres
 
+    
     botones_sugerencias.innerHTML = ""
 
-    resumen.innerHTML = movie.overview
-    nombre_de_la_peli.innerHTML = movie.title
-    puntuacion.innerHTML = `⭐ ${movie.vote_average}`
-    imagen_de_la_pelicula_clickeada.src = "https://image.tmdb.org/t/p/w300"+ movie.poster_path
-    console.log(imagen_de_la_pelicula_clickeada)
-    
     
     
     data.forEach(movies => {
 
-        
+        resumen.innerHTML = movie.overview
+    nombre_de_la_peli.innerHTML = movie.name
+    puntuacion.innerHTML = `⭐ ${movie.vote_average}`
+    imagen_de_la_pelicula_clickeada.src = "https://image.tmdb.org/t/p/w300"+ movie.poster_path
+    console.log(imagen_de_la_pelicula_clickeada)
+    
 
         const botonesmovies = document.createElement("button")
         const textodelboton = document.createTextNode (movies.name)
@@ -38,38 +42,43 @@ async function getmoviedetails(id){
         botones_sugerencias.appendChild(botonesmovies)
         botonesmovies.addEventListener("click" , ()=>{
             location.hash =`#category=${movies.id}-${movies.name}`;
+
         })
-
-        
-
+       
         getreloadedmoviesbyid(id)
-        /* const imagen_de_las_peliculas_similaresvs = document.createElement("img")
-        imagen_de_las_peliculas_similaresvs.src = "https://image.tmdb.org/t/p/w300" + "" */
-        contenedor_de_la_imagen_recomendadasvs.addEventListener("click", ()=>{
-            const movie_id = movies.id
-            location.hash = `#movie=${movies.id}=${movies.name}`
-            getmoviedetails(movie_id)
-            return
-        })
-        
     })
 }
 
 async function getreloadedmoviesbyid(id){
     const  {data:movie}  = await api("/movie/"+ id + "/recommendations" );
     const data = movie.results
-    
+
+    contenedor_de_la_imagen_recomendadasvs.innerHTML =""
             
     data.forEach(movies =>{
-         
-        imagen_de_la_pelicula_clickeadavs.src = `https://image.tmdb.org/t/p/w300${movies.poster_path}`
-        nombre_De_la_pelicula_recomendadavs.innerHTML = movies.title
-        contenedor_de_la_imagen_recomendadasvs.appendChild(imagen_de_la_pelicula_clickeadavs)
-        contenedor_de_la_imagen_recomendadasvs.appendChild(nombre_De_la_pelicula_recomendadavs)
-
         
+        const imagendelapeliculaclickeadavs = document.createElement("img")
+        imagendelapeliculaclickeadavs.classList.add("imagen_de_la_pelicula_clickeadavs")
+        imagendelapeliculaclickeadavs.src= `https://image.tmdb.org/t/p/w300${movies.poster_path}`
+
+        const nombreDelapelicularecomendadavs = document.createElement("h3")
+        nombreDelapelicularecomendadavs.innerHTML = movies.title
+        
+        const divdelcontenedor = document.createElement("div")
+        divdelcontenedor.classList.add("contenedordiv")
+        
+        divdelcontenedor.appendChild(imagendelapeliculaclickeadavs)
+        divdelcontenedor.appendChild(nombreDelapelicularecomendadavs)
+        contenedor_de_la_imagen_recomendadasvs.appendChild(divdelcontenedor)
+    
+        imagendelapeliculaclickeadavs.addEventListener("click", () =>{
+            
+            location.hash =`#movie=${movies.id}=${movies.title}` 
+            getmoviedetails(movies.id)
+        })
     })
 
+   
 }
 
 
@@ -106,19 +115,6 @@ async function getcategorispreview() {
 
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 async function gettrendingtv() {
 
@@ -162,26 +158,6 @@ async function gettrendingtv() {
         trendingpreview.appendChild(movieconteiner)
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 async function getsearchmovies(id) {
 
@@ -229,20 +205,6 @@ async function getsearchmovies(id) {
     });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //este es el de peliculsa trending
 
 async function gettrendingpelis() {
@@ -287,23 +249,6 @@ async function gettrendingpelis() {
         trendingpreview.appendChild(movieconteiner)
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //este es el click de las categorias 
 
@@ -352,26 +297,3 @@ async function getcategorymovies(id) {
         img_categorias.appendChild(movieconteiner)
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
