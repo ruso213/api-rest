@@ -644,11 +644,12 @@ body::-webkit-scrollbar-thumb:hover{
     flex-direction: column;
     align-items: center;
 }
-.imagen_de_la_pelicula_clickeadavs:hover{
+.imagen-tendencias:hover{
     transform: translateY(-10px);
     transition-duration: .3s;
     cursor: pointer;
     box-shadow: 0 20px 20px rgb(0 0 0 / 38%), 10px 10px 20px rgb(0 0 0 / 23%);
+    
 }
 
 .contenedor_de_la_imagen_recomendadasvs::-webkit-scrollbar{
@@ -673,4 +674,35 @@ body::-webkit-scrollbar-thumb:hover{
 
 .imagen_de_la_pelicula_clickeadavs{
     height: 300px;
+}
+
+.imagen-de-la-peli-tv{
+    max-width: 200px;   
+    margin-bottom: 10px;
+    margin-right: 10px;
+    max-width: 200px;   
+
+    border-radius: 10px;
+}
+.imagen-de-la-peli-tv:hover{
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.377), 10px 10px 20px rgb(0 0 0 / 23%);
+
+}
+.imagen-tendencias-tv{
+    width: 207px;
+    display: flex;
+    margin: 0 7px 20px 0px;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.imagen-tendencias:hover{
+    transform: translateY(-10px);
+    transition-duration: .3s;
+    cursor: pointer;
+    box-shadow: 0 20px 20px rgb(0 0 0 / 38%), 10px 10px 20px rgb(0 0 0 / 23%);
+    transform: translateY(-10px) ;
+    transition-duration: .3s;
+    cursor:pointer;
 }

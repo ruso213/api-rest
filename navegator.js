@@ -7,11 +7,10 @@ searchformbuton.addEventListener("click", ()=> {location.hash = ("search-" + sea
 
     flecha_button.addEventListener("click", ()=>{
         history.back()
-        })
+    })
 
 
-         
-
+    
 function clickvermas(){
     location.hash = "trend"
 }
@@ -58,11 +57,19 @@ async function navigator (){
     }
     else if(location.hash.startsWith("#search")){
         search()
+        
 
-    } else if(!location.hash.startsWith("#movie=a")){
+    } else if(location.hash.startsWith("#tv")){
+        tv()
+        console.log("afdadf");
+
+    }else if(location.hash != "#movie=!0100"){
         movie()
+        
 
-    }else if(location.hash.startsWith("")){
+    }
+    
+    else if(location.hash.startsWith("")){
         home()
 
     }
@@ -74,7 +81,47 @@ async function navigator (){
     
 
 async function movie() {
-    console.log("joa")
+
+   
+    const { data } = await api("/movie/popular?api_key=" + apikey);
+    const movies = data.results;
+
+
+    detail.classList.remove("inactive")
+    div_boton.classList.remove("inactive")
+
+    quivanlasimgs.classList.add("inactive")
+    tendencia.classList.add("inactive")
+    trendingpreview.classList.add("inactive")
+    tendencia_tv_contenedor.classList.add("inactive")
+    categoria_titulo.classList.add("inactive")
+    categorias.classList.add("inactive")
+    contenedor_img_categorias.classList.add("inactive")
+    buscado.classList.add("inactive")
+    tendencia.classList.add("inactive")   
+     peliculas_similares_y_categorias.classList.remove("inactive")
+
+
+    
+    const [_ , moviebyID , moviename] = location.hash.split("=")
+    
+    const movienamesplit = moviename.split("%20")
+    const moviejuntado = movienamesplit.join(" ")
+
+         getmoviedetailsmovies( moviebyID, "original_title" ,movies , "movie")
+     
+}
+async function tv() {
+
+    console.log("hola")
+
+    const { data } = await api("/tv/popular?api_key=" + apikey);
+    const movies = data.results;
+
+    const [_ , moviebyID , moviename] = location.hash.split("=")
+    
+    const movienamesplit = moviename.split("%20")
+    const moviejuntado = movienamesplit.join(" ")
 
     detail.classList.remove("inactive")
     div_boton.classList.remove("inactive")
@@ -88,11 +135,12 @@ async function movie() {
     contenedor_img_categorias.classList.add("inactive")
     buscado.classList.add("inactive")
     tendencia.classList.add("inactive")
-
-    const [_ , moviebyID] = location.hash.split("=")
-
-
-
+    peliculas_similares_y_categorias.classList.add("inactive")
+    
+    
+    console.log(movies.id)
+    
+    getmoviedetailstvs(moviebyID, movies)
 }
 
 async function search() {

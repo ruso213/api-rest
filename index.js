@@ -1,5 +1,7 @@
 /* const { id } = require("date-fns/locale");
  */
+
+
 const apikey = "0a8c928df346aad46752e35300e6114e";
 const api = axios.create({
     baseURL: "https://api.themoviedb.org/3"
@@ -13,17 +15,13 @@ const api = axios.create({
 })
 
 
+async function getmoviedetailstvs(id , movies){
 
 
-
-
-async function getmoviedetailsmovies(id , name ,movies  , url){
-    
-    
-    const  {data:movie}  = await api(`/${url}/`+ id );
+    const  {data:movie}  = await api(`/tv/`+ id );
     botones_sugerencias.innerHTML = ""
     const asa = movie.genres
-    console.log(asa)
+    
     console.log(imagen_de_la_pelicula_clickeada)
 
 
@@ -39,17 +37,63 @@ async function getmoviedetailsmovies(id , name ,movies  , url){
        
     })
 
-    movies.forEach(movies => {
+   
+
+    movies.forEach(movies=> {
+
+        resumen.innerHTML = movie.overview
+        nombre_de_la_peli.innerHTML = movie.name
+        puntuacion.innerHTML = `⭐ ${movie.vote_average}`
+        imagen_de_la_pelicula_clickeada.src = "https://image.tmdb.org/t/p/w300"+ movie.poster_path
+    
+        
+   
+        
+        getreloadedmoviesbyid(id)
+    })
+
+
+}
+
+
+
+async function getmoviedetailsmovies(id , name ,movies  , url){
+
+
+    const  {data:movie}  = await api(`/movie/`+ id );
+    botones_sugerencias.innerHTML = ""
+    const asa = movie.genres
+    console.log(imagen_de_la_pelicula_clickeada)
+
+
+    asa.forEach(moviesr2 =>{
+        const botonesmovies = document.createElement("button")
+        const textodelboton = document.createTextNode (moviesr2.name)
+        botonesmovies.appendChild(textodelboton)
+        botones_sugerencias.appendChild(botonesmovies)
+        botonesmovies.addEventListener("click" , ()=>{
+            location.hash =`#category=${moviesr2.name}-${moviesr2.id}`;
+
+        })
+       
+    })
+
+   
+
+    movies.forEach(movies=> {
 
         resumen.innerHTML = movie.overview
         nombre_de_la_peli.innerHTML = movie[name]
         puntuacion.innerHTML = `⭐ ${movie.vote_average}`
         imagen_de_la_pelicula_clickeada.src = "https://image.tmdb.org/t/p/w300"+ movie.poster_path
     
-
+        
+   
         
         getreloadedmoviesbyid(id)
     })
+
+
 }
 
 async function getreloadedmoviesbyid(id){
@@ -58,11 +102,13 @@ async function getreloadedmoviesbyid(id){
 
     contenedor_de_la_imagen_recomendadasvs.innerHTML =""
             
+    
+
     movies.forEach(movies2 =>{
         
-        const imagendelapeliculaclickeadavs = document.createElement("img")
-        imagendelapeliculaclickeadavs.classList.add("imagen_de_la_pelicula_clickeadavs")
-        imagendelapeliculaclickeadavs.src= `https://image.tmdb.org/t/p/w300${movies2.poster_path}`
+        const movieconteiner = document.createElement("img")
+        movieconteiner.classList.add("imagen-tendencias")
+        movieconteiner.src= `https://image.tmdb.org/t/p/w300${movies2.poster_path}`
 
         const nombreDelapelicularecomendadavs = document.createElement("h3")
         nombreDelapelicularecomendadavs.innerHTML = movies2.title
@@ -70,17 +116,18 @@ async function getreloadedmoviesbyid(id){
         const divdelcontenedor = document.createElement("div")
         divdelcontenedor.classList.add("contenedordiv")
         
-        divdelcontenedor.appendChild(imagendelapeliculaclickeadavs)
+        divdelcontenedor.appendChild(movieconteiner)
         divdelcontenedor.appendChild(nombreDelapelicularecomendadavs)
         contenedor_de_la_imagen_recomendadasvs.appendChild(divdelcontenedor)
     
-        imagendelapeliculaclickeadavs.addEventListener("click", () =>{
+        movieconteiner.addEventListener("click", () =>{
             
             location.hash =`#movie=${movies2.id}=${movies2.title}` 
-            getmoviedetailsmovies(movies2.id ,"original_title" ,movies  , "movie")
         })
-    })
+        
 
+    })
+     
    
 }
 
@@ -131,8 +178,8 @@ async function gettrendingtv() {
         const trendingpreview = document.querySelector(".aqui-van-las-imgs-tv")
 
 
-        const movieconteiner = document.createElement("div")
-        movieconteiner.classList.add("imagen-tendencias")
+        const movieconteiners = document.createElement("div")
+        movieconteiners.classList.add("imagen-tendencias-tv")
 
 
         const categorytext = document.createTextNode(movie.original_name)
@@ -142,24 +189,24 @@ async function gettrendingtv() {
         namedelapeli.classList.add("texoth3")
         namedelapeli.appendChild(categorytext)
         
-
-
-        movieconteiner.addEventListener("click", ()=>{
-            const movie_id = movie.id
-            location.hash = `#movie=${movie_id}=${movie.original_name}`
-            console.log(movie.original_name , movie_id)      
-            getmoviedetailsmovies(movie_id , "name" , movies,  "tv")
-        })
+        
+       
 
         const movieimg = document.createElement("img");
-        movieimg.classList.add("imagen-de-la-peli");
+        movieimg.classList.add("imagen-de-la-peli-tv");
         movieimg.setAttribute("alt", movie.title)
         movieimg.setAttribute("src", "https://image.tmdb.org/t/p/w300" + movie.poster_path);
 
-        movieconteiner.appendChild(movieimg)
-        movieconteiner.appendChild(namedelapeli)
-        trendingpreview.appendChild(movieconteiner)
-    });
+        movieconteiners.appendChild(movieimg)
+        movieconteiners.appendChild(namedelapeli)
+        trendingpreview.appendChild(movieconteiners)
+        movieimg.addEventListener("click", ()=>{
+            const movie_id = movie.id
+            console.log(movie.id)
+
+            location.hash = `#tv=${movie_id}=${movie.original_name}`
+      })
+    }); 
 }
 
 async function getsearchmovies(id) {
@@ -201,7 +248,6 @@ async function getsearchmovies(id) {
             const movie_id = movie.id
             const movietitle = movie.title
             location.hash = `#movie=${movie_id}=${movietitle}`
-            getmoviedetailsmovies(movie_id , "original_title" , movies,  "movie")
 
 
             console.log(movie.title , movie_id)        })
@@ -233,7 +279,6 @@ async function gettrendingpelis() {
             const movie_id = movie.id
             const movietitle = movie.title
             location.hash = `#movie=${movie_id}=${movietitle}`
-            getmoviedetailsmovies(movie_id , "original_title" , movies , "movie")
 
             console.log(movietitle , movie_id)        })
 
@@ -290,7 +335,6 @@ async function getcategorymovies(id) {
             const movie_id = movie.id
             location.hash = `#movie=${movie_id}=${movie.title}`      
             console.log(movie.title , movie_id)
-            getmoviedetailsmovies(movie_id , "original_title" , movies , "movie" )
 
         })
 
