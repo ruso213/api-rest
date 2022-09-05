@@ -1,6 +1,5 @@
- 
-window.addEventListener("DOMcontentLoaded" , navigator , false)
-window.addEventListener("hashchange" , navigator , false)
+window.addEventListener("DOMContentLoaded" , navigator2 , false)
+window.addEventListener("hashchange" , navigator2 , false)
 
 searchformbuton.addEventListener("click", ()=> {location.hash = ("search-" + searchinput.value)})
 
@@ -10,7 +9,6 @@ searchformbuton.addEventListener("click", ()=> {location.hash = ("search-" + sea
     })
 
 
-    
 function clickvermas(){
     location.hash = "trend"
 }
@@ -22,7 +20,6 @@ function searchbutton(){
     location.hash = "search"
     
 }
-location.hash = "home"
 
 
 const $ = (id) => document.querySelector(id);
@@ -33,24 +30,17 @@ const eliminarhijo = function (padre, hijo){
     let elemento = d_padre.remove(d_hijo)
     console.log(elemento)
 }
- 
- 
- if(!location.hash){
-        home()
-    }else if(location.hash === "home"){
-        home()
-    }
+clicklogo()
 
 
-
-
-async function navigator (){
+async function navigator2(){
     if(location.hash.startsWith("#trend")){
         trend()
 
     }
     else if(location.hash.startsWith("#home")){
         home()
+        console.log("home")
     }
     else if(location.hash.startsWith("#category")){
         categoria()
@@ -78,11 +68,10 @@ async function navigator (){
         home()
     }
 }
-    
 
 async function movie() {
 
-   
+    
     const { data } = await api("/movie/popular?api_key=" + apikey);
     const movies = data.results;
 
@@ -125,6 +114,8 @@ async function tv() {
 
     detail.classList.remove("inactive")
     div_boton.classList.remove("inactive")
+    pelis_sim.classList.remove("inactive")
+    contenedor_de_la_imagen_recomendadasvs.classList.remove("inactive")
 
     quivanlasimgs.classList.add("inactive")
     tendencia.classList.add("inactive")
@@ -136,8 +127,10 @@ async function tv() {
     buscado.classList.add("inactive")
     tendencia.classList.add("inactive")
     peliculas_similares_y_categorias.classList.add("inactive")
+    pelis_sim.classList.add("inactive")
+    contenedor_de_la_imagen_recomendadasvs.innerHTML = ""
     
-    
+
     console.log(movies.id)
     
     getmoviedetailstvs(moviebyID, movies)
@@ -241,7 +234,7 @@ function categoria(){
 
     const [_ , categoryinfo] = location.hash.split("=")
     const [categoryid , categoryname] = categoryinfo.split("-")
-    getcategorymovies(categoryid , "a" , "/search/movie")
+    getcategorymovies(categoryid )
     categoria_titulo.textContent = categoryname
 
     contenedor_img_categorias.classList.remove("inactive")

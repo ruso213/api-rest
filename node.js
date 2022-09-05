@@ -17,7 +17,8 @@ const nombre_de_la_peli = document.querySelector(".nombre_de_la_peli")
 const puntuacion = document.querySelector(".puntuacion")
 
 
-
+//i don´t know
+const loading = document.querySelector ("loading")
 //peliculas similares
 
 const peliculas_similares_y_categorias = document.querySelector(".peliculas_similares_y_categorias")
@@ -41,6 +42,7 @@ const nombre_De_la_pelicula_recomendadavs = document.querySelector(".nombre_De_l
 const categoria_titulo =  document.querySelector(".achedos")
 const categorias = document.querySelector(".categorias")
 const categorias_botones = document.querySelector(".categorias-botones")
+const pelis_sim = document.querySelector(".pelis_sim")
 console.log(categorias)
 
 //search
@@ -60,7 +62,7 @@ const tendencias_boton_ver_menos = document.querySelector(".tendencias-boton-ver
 const tendencias_texto = document.querySelector(".tendencias-texto")
 
 const imagenes_tendencias = document.querySelector(".imagen-tendencias")
-
+const aqui_van_las_imgs_trend = document.querySelector(".aqui-van-las-imgs-trend")
 
 //tendencias-tv
 const tendencia_tv_contenedor = document.querySelector(".tendencias-imagenes-tv")
@@ -77,7 +79,7 @@ const contenedor_img_categorias = document.querySelector(".contenedor-de-las-ima
 const img_categorias = document.querySelector(".categorias-imagenes")
 
 
-
+const botondecargarmas = document.queryCommandIndeterm(".botondecargarmas")
 //search
 
 const buscado = document.querySelector(".buscado")

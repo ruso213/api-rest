@@ -8,6 +8,7 @@ rgb(189, 189, 247); */
     --moradofuerte:rgb(180, 180, 180);
     --moradonofuerte:rgb(51, 51, 51);
     --rojomamalon:rgba(180, 8, 8, 0.644);
+    --negrotransparente : rgba(255, 255, 255, 0.137);
 }
 
 *{
@@ -54,9 +55,12 @@ body::-webkit-scrollbar-thumb:hover{
 }
 
 .imagen-de-la-peli{
+    height: 300px;
+    width: 200px;
     max-width: 200px;   
     margin-bottom: 10px;
     margin-right: 10px;
+    margin-left: 10px;
     border-radius: 10px;
 }
 
@@ -176,7 +180,7 @@ body::-webkit-scrollbar-thumb:hover{
 
 
 .busqueda{
-    padding: 0px 5vw 20px 5vw;    display: grid;
+    padding: 0px 5vw 0px 5vw;    display: grid;
     grid-template-columns: 50fr 1fr;
 }
 .searchform{
@@ -278,12 +282,10 @@ body::-webkit-scrollbar-thumb:hover{
     display: grid;
     grid-template-rows: 1fr;
     
+    
     margin-left: 30px;
 }
 
-.categorias-botones{
-    color:var(--moradofuerte) ;
-}
 
 .botones_sugerencias{
     display:flex;
@@ -324,6 +326,8 @@ body::-webkit-scrollbar-thumb:hover{
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
     justify-items: center;
     margin-top: 20px;
+    color:var(--moradofuerte) ;
+    justify-items: start;
 
 }
 
@@ -411,6 +415,7 @@ body::-webkit-scrollbar-thumb:hover{
     flex-direction: column;
     align-items: center;
     cursor: pointer;
+    border-radius: 20px;
 
 }
 
@@ -517,9 +522,9 @@ body::-webkit-scrollbar-thumb:hover{
 }
 
 .imagen-tendencias :hover{
-    transform: translateY(-10px) ;
     transition-duration: .3s;
     cursor:pointer;
+
 }
 .categorias-imagenes .imagen-categorias:hover{
     transform: translateY(-10px) ;
@@ -553,7 +558,10 @@ body::-webkit-scrollbar-thumb:hover{
 
 .imagen_de_la_pelicula_clickeada{
     border-radius: 20px;
+    
 }
+
+
 .contenedor_img{
     display: flex;
     align-items: center;
@@ -586,7 +594,9 @@ body::-webkit-scrollbar-thumb:hover{
 .resumen{
     grid-area: 2/1/3/3;
     margin: 40px 20px 0 20px;
-
+    /* height: 250px;
+    width: 370px;
+    background-color:var(--negrotransparente); */
 }
 
 .peliculas_similares{
@@ -599,6 +609,8 @@ body::-webkit-scrollbar-thumb:hover{
 
 .peliculas_similares_y_categorias{
     margin-top:70px;
+    display: flex;
+    flex-direction: column;
 }
 
 .que_Categoria_Son{
@@ -621,6 +633,18 @@ body::-webkit-scrollbar-thumb:hover{
     
     
     
+}
+.imagen-de-la-peli-tv{
+    max-width: 200px;   
+    margin-bottom: 10px;
+    margin-right: 10px;
+    max-width: 200px;   
+
+    border-radius: 10px;
+}
+.imagen-de-la-peli-tv:hover{
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.377), 10px 10px 20px rgb(0 0 0 / 23%);
+
 }
 .contenedor_de_la_imagen_recomendadasvs{
     margin-bottom: 30px;
@@ -648,6 +672,15 @@ body::-webkit-scrollbar-thumb:hover{
     transform: translateY(-10px);
     transition-duration: .3s;
     cursor: pointer;
+
+    box-shadow: 0 20px 20px rgb(0 0 0 / 38%), 10px 10px 20px rgb(0 0 0 / 23%);
+    
+}
+.imagen-de-la-peli-tv:hover{
+    transform: translateY(-10px);
+    transition-duration: .3s;
+    cursor: pointer;
+
     box-shadow: 0 20px 20px rgb(0 0 0 / 38%), 10px 10px 20px rgb(0 0 0 / 23%);
     
 }
@@ -676,18 +709,7 @@ body::-webkit-scrollbar-thumb:hover{
     height: 300px;
 }
 
-.imagen-de-la-peli-tv{
-    max-width: 200px;   
-    margin-bottom: 10px;
-    margin-right: 10px;
-    max-width: 200px;   
 
-    border-radius: 10px;
-}
-.imagen-de-la-peli-tv:hover{
-    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.377), 10px 10px 20px rgb(0 0 0 / 23%);
-
-}
 .imagen-tendencias-tv{
     width: 207px;
     display: flex;
@@ -705,4 +727,84 @@ body::-webkit-scrollbar-thumb:hover{
     transform: translateY(-10px) ;
     transition-duration: .3s;
     cursor:pointer;
+}
+.imagen-de-la-peli-tv:hover{
+    transform: translateY(-10px);
+    transition-duration: .3s;
+    cursor: pointer;
+    box-shadow: 0 20px 20px rgb(0 0 0 / 38%), 10px 10px 20px rgb(0 0 0 / 23%);
+    transform: translateY(-10px) ;
+    transition-duration: .3s;
+    cursor:pointer;
+}
+
+.pelis_sim{
+    margin-top: 30px;
+    margin-left: 55px;
+}
+
+
+/* seccion caragando */
+
+.loading {
+    animation: loadingeskeleton infinite 1.50s;
+    margin: 20px;
+}
+.movies_loading{
+    height: 300px;
+    width: 200px;
+    background-color: var(--negrotransparente);
+    border-radius: 20px;
+    animation: loadingeskeleton infinite 1.50s;
+
+}
+
+
+.text_loading{
+    height: 24px;
+    margin-top: 20px;
+    width: 210px;
+    background-color: var(--negrotransparente);
+    border-radius :10px;
+    animation: loadingeskeleton infinite 1.5s;
+
+
+}
+
+.text_loading:nth-child(2){
+  animation-delay: .2s;
+
+}
+.movies_loading:nth-child(3){
+    animation-delay: .4s;
+
+
+}
+
+@keyframes loadingeskeleton{
+    0%, 100%{
+        opacity: 100%;
+
+    }
+    50%{
+        opacity: 20%;
+    }
+}
+
+.botondecargarmas{
+    margin: 0 30px 0 10px ;
+    width:200px;
+    height: 300px;
+    position:relative;
+    top: -25px;
+    border-radius: 10px;
+    border:  none;
+    background-color: var(--negrotransparente);
+    font-size:25px;
+    color: #ffff;
+}
+.botondecargarmas:hover{
+    background-color: rgba(0, 0, 0, 0.236);
+    transition-duration: .05s;
+
 }
