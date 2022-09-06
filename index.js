@@ -68,64 +68,6 @@ const lazyload = new IntersectionObserver((entries) => {
 
 
 
-async function getsearchmovies(id , lazyloader = true) {
-
-    window.scroll({
-        top: 0,
-        behavior: "smooth"
-
-    })
-    const { data } = await api("/search/movie", {
-        params: {
-            query: id
-        }
-    });
-    const movies = data.results;
-
-    categorias_imagenes_buscado.innerHTML = ""
-
-    movies.forEach(movie => {
-
-        //añadir el addeventlistener
-
-        const movieconteiner = document.createElement("div")
-        movieconteiner.classList.add("imagen-categorias")
-       
-        
-        const categorytext = document.createTextNode(movie.title)
-
-
-        const namedelapeli = document.createElement("h3")
-        namedelapeli.appendChild(categorytext)
-        namedelapeli.classList.add("texoth3")
-
-        const movieimg = document.createElement("img");
-        movieimg.classList.add("imagen-de-la-peli");
-        movieimg.setAttribute("alt", movie.title)
-        movieimg.setAttribute("dates-img", "https://image.tmdb.org/t/p/w300" + movie.poster_path);
-
-        if (!movie.poster_path) {
-            movieimg.setAttribute("dates-img", "./assets/interrogation-mark.png")
-        }
-        if (lazyloader) {
-            lazyload.observe(movieimg)
-        }
-
-        movieconteiner.addEventListener("click", () => {
-            const movie_id = movie.id
-            location.hash = `#movie=${movie_id}=${movie.title}`
-        })
-
-        movieconteiner.appendChild(movieimg)
-        movieconteiner.appendChild(namedelapeli)
-    
-        categorias_imagenes_buscado.appendChild(movieconteiner)
-
-
-
-    });
-}
-
 
 //este es el de peliculsa trending
 async function gettrendingpelis(lazyloader = true) {
@@ -359,11 +301,6 @@ async function getreloadedmoviesbyid(id) {
 }
 
 
- 
-
-
-
-
 async function loadMoretrendingpelis( lazyloader = true) {
    
    
@@ -389,6 +326,11 @@ async function loadMoretrendingpelis( lazyloader = true) {
 
 
 }
+ 
+
+
+
+
        
 
 
@@ -418,10 +360,50 @@ async function scrollformorecontent (){
 }
 
 
+async function scrollformorecontentofsearch (){
+    
+   
+    const {scrollTop , scrollHeight , clientHeight} = document.documentElement;
+
+   
+    const isscrollbotom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+    
+    if(isscrollbotom){
+        const { data } = await api(`/trending/movie/week?api_key=${apikey}`, {
+            params: {
+                page: numpage++,
+            }
+    
+        });
+
+        const movies2 = data.results
+        console.log(data)
+        muchasimagenes(movies2)  
+
+       }
+
+}
 
 
 
 
+async function getsearchmovies(id , lazyloader = true) {
+
+    window.scroll({
+        top: 0,
+        behavior: "smooth"
+
+    })
+    const { data } = await api("/search/movie", {
+        params: {
+            query: id
+        }
+    });
+    const movies = data.results;
+
+
+    muchasimagenes(movies)
+}
 
 
 

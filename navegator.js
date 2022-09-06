@@ -176,14 +176,14 @@ async function search() {
 
         categorias_imagenes_buscado.classList.remove("inactive")
         buscado.classList.remove("inactive")
-
+        contenedor_img_categorias.classList.remove("inactive")
+        categoritas_imagenes.classList.remove("inactive")
         quivanlasimgs.classList.add("inactive")
         tendencia.classList.add("inactive")
         trendingpreview.classList.add("inactive")
         tendencia_tv_contenedor.classList.add("inactive")
         categoria_titulo.classList.add("inactive")
         categorias.classList.add("inactive")
-        contenedor_img_categorias.classList.add("inactive")
  const  query = location.hash.split("-")[1]
         getsearchmovies(query)
         console.log(query) 

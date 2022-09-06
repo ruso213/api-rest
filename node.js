@@ -72,7 +72,7 @@ const quivanlasimgs_tvs = document.querySelector(".aqui-van-las-imgs-tv")
 
 const scrollbartendencias = document.querySelector(".tendencias-imagenes")
 
-
+const categoritas_imagenes = document.querySelector(".categorias-imagenes ")
 //categorias
 
 const contenedor_img_categorias = document.querySelector(".contenedor-de-las-imagenes-categorias")
