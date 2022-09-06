@@ -5,8 +5,9 @@ rgb(189, 189, 247); */
 
 
     :root{
-    --moradofuerte:rgb(180, 180, 180);
-    --moradonofuerte:rgb(51, 51, 51);
+    --moradofuerte:rgb(163, 163, 163);
+    --moradofuerte2:rgb(163, 163, 163);
+    --moradonofuerte:rgb(65, 65, 65);
     --rojomamalon:rgba(180, 8, 8, 0.644);
     --negrotransparente : rgba(255, 255, 255, 0.137);
 }
@@ -18,7 +19,7 @@ rgb(189, 189, 247); */
 }
 
 body{
-    background-color: /* rgb(143, 166, 216) */ rgb(25, 25, 26);
+    background-color: /* rgb(143, 166, 216) */ rgb(22, 22, 22);
     color: var(--moradofuerte);
 }
 
@@ -409,7 +410,7 @@ body::-webkit-scrollbar-thumb:hover{
 
 
 .imagen-tendencias{
-    width: 207px;
+    width: 212px;
     display: flex;
     margin: 0 7px 20px 0px;
     flex-direction: column;
@@ -793,15 +794,17 @@ body::-webkit-scrollbar-thumb:hover{
 
 .botondecargarmas{
     margin: 0 30px 0 10px ;
-    width:200px;
-    height: 300px;
+    padding: 107px 75px;
     position:relative;
+    display: flex;
     top: -25px;
     border-radius: 10px;
     border:  none;
     background-color: var(--negrotransparente);
     font-size:25px;
     color: #ffff;
+    align-items: center;
+    justify-content: center;
 }
 .botondecargarmas:hover{
     background-color: rgba(0, 0, 0, 0.236);

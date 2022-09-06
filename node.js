@@ -79,7 +79,7 @@ const contenedor_img_categorias = document.querySelector(".contenedor-de-las-ima
 const img_categorias = document.querySelector(".categorias-imagenes")
 
 
-const botondecargarmas = document.queryCommandIndeterm(".botondecargarmas")
+const botondecargarmas = document.querySelector(".botondecargarmas")
 //search
 
 const buscado = document.querySelector(".buscado")
@@ -88,3 +88,7 @@ const categorias_imagenes_buscado = document.querySelector(".categorias-imagenes
 //flecha mamalona
 const div_boton = document.querySelector(".div-boton")
 const flecha_button = document.querySelector(".flecha-button")
+
+
+const trending_ver_mas_imagenes = document.querySelector(".trending_ver_mas_imagenes")
+const contenedor_de_las_imagenes_trending_ver_mas = document.querySelector(".contenedor_de_las_imagenes_trending_ver_mas")

@@ -1,11 +1,27 @@
+const urltrendingmovies ="/trending/movie/week?api_key="
+const urlcategorymovies = "/discover/movie"
+let infinitescroll;
+
+
+
+let numpage = 1 
+
+
+
+
+
 window.addEventListener("DOMContentLoaded" , navigator2 , false)
 window.addEventListener("hashchange" , navigator2 , false)
+window.addEventListener("scroll" , infinitescroll , false)
+
+
 
 searchformbuton.addEventListener("click", ()=> {location.hash = ("search-" + searchinput.value)})
 
 
     flecha_button.addEventListener("click", ()=>{
         history.back()
+
     })
 
 
@@ -34,16 +50,26 @@ clicklogo()
 
 
 async function navigator2(){
+
+    if(infinitescroll){
+        window.removeEventListener("scroll", infinitescroll ,  false)
+        infinitescroll = undefined
+    }
+
     if(location.hash.startsWith("#trend")){
         trend()
+        numpage  = 1
 
     }
     else if(location.hash.startsWith("#home")){
         home()
         console.log("home")
+        numpage  = 1
+
     }
     else if(location.hash.startsWith("#category")){
         categoria()
+
     }
     else if(location.hash.startsWith("#search")){
         search()
@@ -51,13 +77,18 @@ async function navigator2(){
 
     } else if(location.hash.startsWith("#tv")){
         tv()
-        console.log("afdadf");
+
+    }else if(location.hash.startsWith("#moretrending")){
+        moretrending()
+        infinitescroll = scrollformorecontent;
+               
 
     }else if(location.hash != "#movie=!0100"){
         movie()
         
 
     }
+    
     
     else if(location.hash.startsWith("")){
         home()
@@ -66,6 +97,9 @@ async function navigator2(){
     
     else {
         home()
+    }
+    if(infinitescroll){
+        window.addEventListener("scroll", infinitescroll , false)
     }
 }
 
@@ -94,8 +128,6 @@ async function movie() {
     
     const [_ , moviebyID , moviename] = location.hash.split("=")
     
-    const movienamesplit = moviename.split("%20")
-    const moviejuntado = movienamesplit.join(" ")
 
          getmoviedetailsmovies( moviebyID, "original_title" ,movies , "movie")
      
@@ -137,7 +169,7 @@ async function tv() {
 }
 
 async function search() {
-        
+      
     div_boton.classList.remove("inactive")
 
     detail.classList.add("inactive")
@@ -152,11 +184,11 @@ async function search() {
         categoria_titulo.classList.add("inactive")
         categorias.classList.add("inactive")
         contenedor_img_categorias.classList.add("inactive")
-
-
-        const  query = location.hash.split("-")[1]
+ const  query = location.hash.split("-")[1]
         getsearchmovies(query)
-        console.log(query)
+        console.log(query) 
+
+        
      }
 
 function home(){
@@ -189,6 +221,8 @@ function home(){
 function trend(){
     gettrendingtv()
     getcategorispreview()
+    
+
 
     detail.classList.add("inactive")
 
@@ -240,4 +274,22 @@ function categoria(){
     contenedor_img_categorias.classList.remove("inactive")
     img_categorias.classList.remove("inactive")
     
+}
+
+
+function moretrending(){
+    console.log("aaf")
+    loadMoretrendingpelis()
+    div_boton.classList.remove("inactive")
+    detail.classList.add("inactive")
+
+    buscado.classList.add("inactive")
+
+    tendencia_tv_contenedor.classList.add("inactive")
+    quivanlasimgs.classList.add("inactive")
+    tendencia.classList.add("inactive")
+    trendingpreview.classList.add("inactive")
+    categorias_botones.classList.add("inactive")
+    contenedor_img_categorias.classList.remove("inactive")
+    img_categorias.classList.remove("inactive")
 }
