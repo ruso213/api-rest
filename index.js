@@ -120,25 +120,6 @@ async function gettrendingpelis(lazyloader = true) {
 }
 
 
-//este es el click de las categorias 
-async function getcategorymovies(id, lazyloader = true) {
-    window.scroll({
-        top: 0,
-        behavior: 'smooth'
-
-    })
-    const { data } = await api("/discover/movie", {
-        params: {
-            with_genres: id,
-        }
-    });
-    const movies = data.results;
-
-    img_categorias.innerHTML = ""
-
-    muchasimagenes(movies)
-    
-}
 
 
 async function getmoviedetailstvs(id, movies) {
@@ -299,96 +280,23 @@ async function getreloadedmoviesbyid(id) {
 
 
 }
-
-
-async function loadMoretrendingpelis( lazyloader = true) {
-   
-   
-    img_categorias.innerHTML = ""
-    const { data } = await api(`/trending/movie/week?api_key=${apikey}`, {
-        params: {
-            page: numpage++ ,
-        }
-
-    });
-   
-   
-    const movies2 = data.results;
-    categoria_titulo.innerHTML = "trending movies" 
-
-
-
-    muchasimagenes(movies2)  
-    
-
-    
-
-
-
-}
- 
-
-
-
-
-       
-
-
-
-async function scrollformorecontent (){
-    
-   
-    const {scrollTop , scrollHeight , clientHeight} = document.documentElement;
-
-   
-    const isscrollbotom = (scrollTop + clientHeight) >= (scrollHeight - 15)
-    
-    if(isscrollbotom){
-        const { data } = await api(`/trending/movie/week?api_key=${apikey}`, {
-            params: {
-                page: numpage++,
-            }
-    
-        });
-
-        const movies2 = data.results
-        console.log(data)
-        muchasimagenes(movies2)  
-
-       }
-
-}
-
-
-async function scrollformorecontentofsearch (){
-    
-   
-    const {scrollTop , scrollHeight , clientHeight} = document.documentElement;
-
-   
-    const isscrollbotom = (scrollTop + clientHeight) >= (scrollHeight - 15)
-    
-    if(isscrollbotom){
-        const { data } = await api(`/trending/movie/week?api_key=${apikey}`, {
-            params: {
-                page: numpage++,
-            }
-    
-        });
-
-        const movies2 = data.results
-        console.log(data)
-        muchasimagenes(movies2)  
-
-       }
-
-}
-
-
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//aqui empieza el search movies :)       
+let pageofsearch = 1
 
 
 async function getsearchmovies(id , lazyloader = true) {
-
+    pageofsearch = 2
+    
+    img_categorias.innerHTML = ""
     window.scroll({
         top: 0,
         behavior: "smooth"
@@ -401,11 +309,55 @@ async function getsearchmovies(id , lazyloader = true) {
     });
     const movies = data.results;
 
-
+    maxPage = data.total_pages;
+    console.log("maximo de pagina " + maxPage)
     muchasimagenes(movies)
 }
 
+function scrollformorecontentofsearch (query){
+  
 
+
+   return async function funcioninterna(){
+        const {scrollTop , scrollHeight , clientHeight} = document.documentElement;
+
+   
+    const isscrollbotom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+    
+    const paginateisnotmax = pageofsearch < maxPage;
+
+    if(isscrollbotom && paginateisnotmax){
+        const { data } = await api(`/search/movie`, {
+            params: {
+                page: pageofsearch++,
+                query
+            }
+    
+        });
+
+        const movies2 = data.results
+        console.log(data)
+        muchasimagenes(movies2)  
+
+        console.log(pageofsearch)
+       }
+    }
+   
+    
+
+}
+
+//aqui acaba el search movies :)
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//aqui empieza el gettrending
 
 async function gettrendingtv(lazyloader = true) {
 
@@ -463,10 +415,119 @@ async function gettrendingtv(lazyloader = true) {
             location.hash = `#tv=${movie_id}=${movie.original_name}`
         })
     });
+    maxPage = data.total_pages;
 
-    
 
 }
 
+async function loadMoretrendingpelis( lazyloader = true) {
+   
+   
+    img_categorias.innerHTML = ""
+    const { data } = await api(`/trending/movie/week?api_key=${apikey}`, {
+        params: {
+            page: numpage++ ,
+        }
+
+    });
+   
+   
+    const movies2 = data.results;
+    categoria_titulo.innerHTML = "trending movies" 
 
 
+
+    muchasimagenes(movies2)  
+    
+
+    
+
+
+
+}
+ 
+async function scrollformorecontent (){
+    
+   
+    const {scrollTop , scrollHeight , clientHeight} = document.documentElement;
+
+   
+    const isscrollbotom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+    const paginateisnotmax = pageofsearch < maxPage;
+
+    if(isscrollbotom && paginateisnotmax){
+        const { data } = await api(`/trending/movie/week?api_key=${apikey}`, {
+            params: {
+                page: numpage++,
+            }
+    
+        });
+
+        const movies2 = data.results
+        console.log(data)
+        muchasimagenes(movies2)  
+
+       }
+
+}
+
+//aqui acaba el gettrending :)
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//--------------------------------
+//este es el click de las categorias 
+async function getcategorymovies(id, lazyloader = true) {
+    window.scroll({
+        top: 0,
+        behavior: 'smooth'
+
+    })
+    const { data } = await api("/discover/movie", {
+        params: {
+            with_genres: id,
+        }
+    });
+    const movies = data.results;
+
+    img_categorias.innerHTML = ""
+
+    muchasimagenes(movies)
+    
+}
+function scrollformorecontentofcategory (id){
+  
+
+
+    return async function funcioninterna(){
+         const {scrollTop , scrollHeight , clientHeight} = document.documentElement;
+ 
+    
+     const isscrollbotom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+
+ 
+     if(isscrollbotom ){
+         const { data } = await api(`/discover/movie`, {
+             params: {
+                 page: pageofsearch++,
+                 with_genres: id
+             }
+     
+         });
+ 
+         const movies2 = data.results
+         console.log(data)
+         muchasimagenes(movies2)  
+ 
+         console.log(pageofsearch)
+        }
+     }
+    
+     
+ 
+ }

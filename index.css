@@ -539,12 +539,16 @@ body::-webkit-scrollbar-thumb:hover{
     color: none;
     border: none;
     cursor: pointer;
+    position:relative;
+    right: 34px;
 }
 
 .div-boton{
     margin-left: 30px;
     margin-top: 40px;
-    position: fixed;
+
+    position:fixed;
+    
 }
 
 

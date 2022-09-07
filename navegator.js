@@ -184,10 +184,10 @@ async function search() {
         tendencia_tv_contenedor.classList.add("inactive")
         categoria_titulo.classList.add("inactive")
         categorias.classList.add("inactive")
- const  query = location.hash.split("-")[1]
+        const  query = location.hash.split("-")[1]
         getsearchmovies(query)
         console.log(query) 
-
+        infinitescroll = scrollformorecontentofsearch(query)
         
      }
 
@@ -273,7 +273,8 @@ function categoria(){
 
     contenedor_img_categorias.classList.remove("inactive")
     img_categorias.classList.remove("inactive")
-    
+    infinitescroll = scrollformorecontentofcategory(categoryid)
+    console.log(categoryid + "estamos en el id de categoria")
 }
 
 
