@@ -1,7 +1,3 @@
-/* const { id } = require("date-fns/locale");
- */
-
-
 
 const apikey = "0a8c928df346aad46752e35300e6114e";
 const api = axios.create({
@@ -13,7 +9,10 @@ const api = axios.create({
     params: {
         "api_key": apikey
     }
-})
+})/* const { id } = require("date-fns/locale");
+ */
+let maxPage;
+
 
 function muchasimagenes(movies ,  lazyloader = true){
     movies.forEach(movie => {
@@ -42,7 +41,7 @@ function muchasimagenes(movies ,  lazyloader = true){
         if (lazyloader) {
             lazyload.observe(movieimg)
         }
-        movieconteiner.addEventListener("click", () => {
+        movieimg.addEventListener("click", () => {
 
             const movie_id = movie.id
             location.hash = `#movie=${movie_id}=${movie.title}`
@@ -53,10 +52,25 @@ function muchasimagenes(movies ,  lazyloader = true){
         movieconteiner.appendChild(namedelapeli)
 
         img_categorias.appendChild(movieconteiner)
+        botonoes(movieconteiner)
     })
 }
 
-const lazyload = new IntersectionObserver((entries) => {
+
+
+
+function botonoes(movieconteiner){
+    const btn_favorite_movie = document.createElement("button")
+    btn_favorite_movie.classList.add("boton_introducir_a_fav")
+    btn_favorite_movie.addEventListener("click", ()=>{
+        btn_favorite_movie.classList.toggle("bonton_ya_introducido")
+        console.log("hoasfjasfds")
+    })
+    movieconteiner.appendChild(btn_favorite_movie)
+    
+}
+
+    const lazyload = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             const url = entry.target.getAttribute("dates-img")
@@ -84,19 +98,13 @@ async function gettrendingpelis(lazyloader = true) {
 
 
         const movieconteiner = document.createElement("div")
-        movieconteiner.classList.add("imagen-tendencias")
+        movieconteiner.classList.add("imagen-tendencias-tv")
 
 
         const categorytext = document.createTextNode(movie.title)
 
 
-        movieconteiner.addEventListener("click", () => {
-            const movie_id = movie.id
-            const movietitle = movie.title
-            location.hash = `#movie=${movie_id}=${movietitle}`
-
-            console.log(movietitle, movie_id)
-        })
+        
 
         const namedelapeli = document.createElement("h3")
         namedelapeli.appendChild(categorytext)
@@ -108,7 +116,13 @@ async function gettrendingpelis(lazyloader = true) {
         movieimg.setAttribute(
             "dates-img",
             "https://image.tmdb.org/t/p/w300" + movie.poster_path);
+        movieimg.addEventListener("click", () => {
+            const movie_id = movie.id
+            const movietitle = movie.title
+            location.hash = `#movie=${movie_id}=${movietitle}`
 
+            console.log(movietitle, movie_id)
+        })
         if (lazyloader) {
             lazyload.observe(movieimg)
         }
@@ -116,6 +130,7 @@ async function gettrendingpelis(lazyloader = true) {
         movieconteiner.appendChild(movieimg)
         movieconteiner.appendChild(namedelapeli)
         trendingpreview.appendChild(movieconteiner)
+        botonoes(movieconteiner)
     });
 }
 
@@ -166,6 +181,8 @@ async function getmoviedetailstvs(id, movies) {
 }
 
 
+
+
 async function getcategorispreview() {
 
 
@@ -201,6 +218,8 @@ async function getcategorispreview() {
 
     });
 }
+
+
 
 
 async function getmoviedetailsmovies(id, name, movies, url) {
@@ -246,6 +265,8 @@ async function getmoviedetailsmovies(id, name, movies, url) {
 }
 
 
+
+
 async function getreloadedmoviesbyid(id) {
     const { data: movie } = await api("/movie/" + id + "/recommendations");
     const movies = movie.results
@@ -257,7 +278,7 @@ async function getreloadedmoviesbyid(id) {
     movies.forEach(movies2 => {
 
         const movieconteiner = document.createElement("img")
-        movieconteiner.classList.add("imagen-tendencias")
+        movieconteiner.classList.add("imagen-tendencias-tv")
         movieconteiner.src = `https://image.tmdb.org/t/p/w300${movies2.poster_path}`
 
         const nombreDelapelicularecomendadavs = document.createElement("h3")
@@ -275,6 +296,7 @@ async function getreloadedmoviesbyid(id) {
             location.hash = `#movie=${movies2.id}=${movies2.title}`
         })
 
+        botonoes(movieconteiner)
 
     })
 
@@ -313,6 +335,8 @@ async function getsearchmovies(id , lazyloader = true) {
     console.log("maximo de pagina " + maxPage)
     muchasimagenes(movies)
 }
+
+
 
 function scrollformorecontentofsearch (query){
   
@@ -397,7 +421,7 @@ async function gettrendingtv(lazyloader = true) {
 
 
         const movieimg = document.createElement("img");
-        movieimg.classList.add("imagen-de-la-peli-tv");
+        movieimg.classList.add("imagen-de-la-peli");
         movieimg.setAttribute("alt", movie.title)
         movieimg.setAttribute("dates-img", "https://image.tmdb.org/t/p/w300" + movie.poster_path);
 
@@ -408,6 +432,7 @@ async function gettrendingtv(lazyloader = true) {
 
         movieconteiners.appendChild(movieimg)
         movieconteiners.appendChild(namedelapeli)
+        botonoes(movieconteiners)
         trendingpreview.appendChild(movieconteiners)
         movieimg.addEventListener("click", () => {
             const movie_id = movie.id
@@ -419,6 +444,8 @@ async function gettrendingtv(lazyloader = true) {
 
 
 }
+
+
 
 async function loadMoretrendingpelis( lazyloader = true) {
    
@@ -445,7 +472,10 @@ async function loadMoretrendingpelis( lazyloader = true) {
 
 
 }
- 
+
+
+
+
 async function scrollformorecontent (){
     
    
@@ -500,6 +530,10 @@ async function getcategorymovies(id, lazyloader = true) {
     muchasimagenes(movies)
     
 }
+
+
+
+
 function scrollformorecontentofcategory (id){
   
 
@@ -510,8 +544,9 @@ function scrollformorecontentofcategory (id){
     
      const isscrollbotom = (scrollTop + clientHeight) >= (scrollHeight - 15)
 
- 
-     if(isscrollbotom ){
+     const paginateisnotmax = pageofsearch < maxPage;
+
+     if(isscrollbotom && paginateisnotmax ){
          const { data } = await api(`/discover/movie`, {
              params: {
                  page: pageofsearch++,

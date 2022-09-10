@@ -120,7 +120,6 @@ async function movie() {
     categoria_titulo.classList.add("inactive")
     categorias.classList.add("inactive")
     contenedor_img_categorias.classList.add("inactive")
-    buscado.classList.add("inactive")
     tendencia.classList.add("inactive")   
      peliculas_similares_y_categorias.classList.remove("inactive")
 
@@ -156,7 +155,6 @@ async function tv() {
     categoria_titulo.classList.add("inactive")
     categorias.classList.add("inactive")
     contenedor_img_categorias.classList.add("inactive")
-    buscado.classList.add("inactive")
     tendencia.classList.add("inactive")
     peliculas_similares_y_categorias.classList.add("inactive")
     pelis_sim.classList.add("inactive")
@@ -174,10 +172,8 @@ async function search() {
 
     detail.classList.add("inactive")
 
-        categorias_imagenes_buscado.classList.remove("inactive")
-        buscado.classList.remove("inactive")
         contenedor_img_categorias.classList.remove("inactive")
-        categoritas_imagenes.classList.remove("inactive")
+        img_categorias.classList.remove("inactive")
         quivanlasimgs.classList.add("inactive")
         tendencia.classList.add("inactive")
         trendingpreview.classList.add("inactive")
@@ -205,7 +201,6 @@ function home(){
 
 
     contenedor_img_categorias.classList.add("inactive")
-    buscado.classList.add("inactive")
 
     div_boton.classList.add("inactive")
     tendencia_tv_contenedor.classList.add("inactive")
@@ -238,7 +233,6 @@ function trend(){
     trendingpreview.classList.remove("tendencias-imagenes")
     trendingpreview.classList.add("aqui-van-las-imgs-trend")
     contenedor_img_categorias.classList.add("inactive")
-    buscado.classList.add("inactive")
 
     tendencias_boton_ver_menos.classList.remove("inactive")
     tendencias_boton.classList.add("inactive")
@@ -256,7 +250,6 @@ function categoria(){
     div_boton.classList.remove("inactive")
     detail.classList.add("inactive")
 
-    buscado.classList.add("inactive")
 
     tendencia_tv_contenedor.classList.add("inactive")
     quivanlasimgs.classList.add("inactive")
@@ -284,7 +277,6 @@ function moretrending(){
     div_boton.classList.remove("inactive")
     detail.classList.add("inactive")
 
-    buscado.classList.add("inactive")
 
     tendencia_tv_contenedor.classList.add("inactive")
     quivanlasimgs.classList.add("inactive")
