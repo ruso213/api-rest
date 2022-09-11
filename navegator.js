@@ -80,7 +80,6 @@ async function navigator2(){
 
     }else if(location.hash.startsWith("#moretrending")){
         moretrending()
-        infinitescroll = scrollformorecontent;
                
 
     }else if(location.hash != "#movie=!0100"){
@@ -91,16 +90,21 @@ async function navigator2(){
     
     
     else if(location.hash.startsWith("")){
+        trendingpreview.innerHTML = ""
         home()
+
 
     }
     
     else {
+        trendingpreview.innerHTML = ""
         home()
+
     }
     if(infinitescroll){
         window.addEventListener("scroll", infinitescroll , false)
     }
+  
 }
 
 async function movie() {
@@ -108,14 +112,17 @@ async function movie() {
     
     const { data } = await api("/movie/popular?api_key=" + apikey);
     const movies = data.results;
+    trendingpreview.classList.add("inactive2") 
+    titulo_peliculas_favoritas.classList.add("inactive")
 
 
     detail.classList.remove("inactive")
     div_boton.classList.remove("inactive")
-
+    peliculas_favoritas.classList.add("inactive2")
     quivanlasimgs.classList.add("inactive")
     tendencia.classList.add("inactive")
     trendingpreview.classList.add("inactive")
+    peliculas_favoritas.classList.add("inactive")
     tendencia_tv_contenedor.classList.add("inactive")
     categoria_titulo.classList.add("inactive")
     categorias.classList.add("inactive")
@@ -137,19 +144,20 @@ async function tv() {
 
     const { data } = await api("/tv/popular?api_key=" + apikey);
     const movies = data.results;
-
+    peliculas_favoritas
     const [_ , moviebyID , moviename] = location.hash.split("=")
     
     const movienamesplit = moviename.split("%20")
     const moviejuntado = movienamesplit.join(" ")
+    titulo_peliculas_favoritas.classList.add("inactive")
 
     detail.classList.remove("inactive")
     div_boton.classList.remove("inactive")
     pelis_sim.classList.remove("inactive")
     contenedor_de_la_imagen_recomendadasvs.classList.remove("inactive")
-
     quivanlasimgs.classList.add("inactive")
     tendencia.classList.add("inactive")
+    peliculas_favoritas.classList.add("inactive2")
     trendingpreview.classList.add("inactive")
     tendencia_tv_contenedor.classList.add("inactive")
     categoria_titulo.classList.add("inactive")
@@ -159,7 +167,8 @@ async function tv() {
     peliculas_similares_y_categorias.classList.add("inactive")
     pelis_sim.classList.add("inactive")
     contenedor_de_la_imagen_recomendadasvs.innerHTML = ""
-    
+        trendingpreview.classList.add("inactive2") 
+
 
     console.log(movies.id)
     
@@ -171,6 +180,8 @@ async function search() {
     div_boton.classList.remove("inactive")
 
     detail.classList.add("inactive")
+    trendingpreview.classList.add("inactive2") 
+    peliculas_favoritas.classList.add("inactive2") 
 
         contenedor_img_categorias.classList.remove("inactive")
         img_categorias.classList.remove("inactive")
@@ -180,6 +191,8 @@ async function search() {
         tendencia_tv_contenedor.classList.add("inactive")
         categoria_titulo.classList.add("inactive")
         categorias.classList.add("inactive")
+    titulo_peliculas_favoritas.classList.add("inactive")
+
         const  query = location.hash.split("-")[1]
         getsearchmovies(query)
         console.log(query) 
@@ -188,37 +201,45 @@ async function search() {
      }
 
 function home(){
+    trendingpreview.innerHTML = ""
     getcategorispreview()
-    gettrendingpelis()
-    getcategorispreview()
+    gettrendingpelis() 
+    getlikedmoviesimage()
+    titulo_peliculas_favoritas.classList.remove("inactive")
 
+    scrollbartendencias.classList.remove("inactive")
     detail.classList.add("inactive")
     tendencia.classList.remove("inactive")
-    trendingpreview.classList.remove("inactive")
+    trendingpreview.classList.remove("inactive2")
     categorias.classList.remove("inactive")
     quivanlasimgs.classList.remove("inactive")
     categorias_botones.classList.remove("inactive")
-
-
+    peliculas_favoritas.classList.remove("inactive2")
+    botondecargarmas.classList.add("inactive2")
     contenedor_img_categorias.classList.add("inactive")
-
+    
     div_boton.classList.add("inactive")
     tendencia_tv_contenedor.classList.add("inactive")
     
-    trendingpreview.classList.remove("aqui-van-las-imgs-trend")
-    trendingpreview.classList.add("tendencias-imagenes")
     tendencias_boton_ver_menos.classList.add("inactive")
     tendencias_boton.classList.remove("inactive")
+    categoria_titulo.textContent = "categorias"
 
 }
 
 
 function trend(){
+    quivanlasimgs.innerHTML = ""
+
     gettrendingtv()
     getcategorispreview()
-    
+    titulo_peliculas_favoritas.classList.remove("inactive")
 
+    botondecargarmas.classList.remove("inactive2")
 
+    peliculas_favoritas.classList.remove("inactive2")
+    trendingpreview.classList.remove("inactive2") 
+    trendingpreview.classList.remove("inactive") 
     detail.classList.add("inactive")
 
     quivanlasimgs.classList.remove("inactive")
@@ -230,14 +251,13 @@ function trend(){
     div_boton.classList.remove("inactive")
 
     tendencia_tv_contenedor.classList.remove("inactive")
-    trendingpreview.classList.remove("tendencias-imagenes")
-    trendingpreview.classList.add("aqui-van-las-imgs-trend")
+    
     contenedor_img_categorias.classList.add("inactive")
 
     tendencias_boton_ver_menos.classList.remove("inactive")
     tendencias_boton.classList.add("inactive")
 
-
+    categoria_titulo.textContent = "categorias"
 
     
     
@@ -246,7 +266,10 @@ function trend(){
 
 function categoria(){
 
-  
+    trendingpreview.classList.add("inactive2") 
+    peliculas_favoritas.classList.add("inactive2") 
+    titulo_peliculas_favoritas.classList.add("inactive")
+
     div_boton.classList.remove("inactive")
     detail.classList.add("inactive")
 
@@ -257,17 +280,19 @@ function categoria(){
     trendingpreview.classList.add("inactive")
     categorias_botones.classList.add("inactive")
     
-    console.log(`estas en ${location.hash}`)
 
     const [_ , categoryinfo] = location.hash.split("=")
     const [categoryid , categoryname] = categoryinfo.split("-")
+    infinitescroll = scrollformorecontentofcategory(categoryid)
+    const categorianombre = categoryname.split("%20").join(" ")
+    console.log(categorianombre)
+
     getcategorymovies(categoryid )
-    categoria_titulo.textContent = categoryname
+    categoria_titulo.textContent = categorianombre
 
     contenedor_img_categorias.classList.remove("inactive")
     img_categorias.classList.remove("inactive")
-    infinitescroll = scrollformorecontentofcategory(categoryid)
-    console.log(categoryid + "estamos en el id de categoria")
+    console.log(infinitescroll)
 }
 
 
@@ -276,7 +301,11 @@ function moretrending(){
     loadMoretrendingpelis()
     div_boton.classList.remove("inactive")
     detail.classList.add("inactive")
+    titulo_peliculas_favoritas.classList.add("inactive")
 
+    trendingpreview.classList.add("inactive2") 
+
+    peliculas_favoritas.classList.add("inactive2") 
 
     tendencia_tv_contenedor.classList.add("inactive")
     quivanlasimgs.classList.add("inactive")
@@ -285,4 +314,6 @@ function moretrending(){
     categorias_botones.classList.add("inactive")
     contenedor_img_categorias.classList.remove("inactive")
     img_categorias.classList.remove("inactive")
+
+    infinitescroll = scrollformorecontent
 }

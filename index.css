@@ -149,6 +149,7 @@ body::-webkit-scrollbar-thumb:hover{
 
 .tendencias-imagenes{
     display: flex;
+    align-items: center;
     overflow-x: auto;
     margin: 30PX 20px 0 20px;
 }
@@ -156,7 +157,7 @@ body::-webkit-scrollbar-thumb:hover{
 .tendencias-imagenes::-webkit-scrollbar{
     background-color: none;
     border-radius: 5px;
-    height: 0px;
+    height: 10px;
     margin:  0 20px 0 20px;
    
 }
@@ -351,7 +352,7 @@ body::-webkit-scrollbar-thumb:hover{
 
 .aqui-van-las-imgs{
     display: flex;
-    height: 400px;
+    
     align-items: center;
 
 }
@@ -433,9 +434,9 @@ body::-webkit-scrollbar-thumb:hover{
 .aqui-van-las-imgs-tv{
     display: flex;
     overflow-x: auto;
-    height: 400px;
+    height: 337px;
     margin-left: 27px;
-    margin-top: 30px;
+    margin-top: 20px;
     align-items: center;
     
 }
@@ -472,6 +473,7 @@ body::-webkit-scrollbar-thumb:hover{
     overflow-x: auto    ;
     margin-left: 20px;
     margin-top: 30px;
+    align-items: center;
 }
 
 .aqui-van-las-imgs-trend::-webkit-scrollbar{
@@ -648,6 +650,7 @@ body::-webkit-scrollbar-thumb:hover{
 
 .contenedordiv{
     margin-left: 20px;
+    position: relative;
     display: flex;
     margin-right: 20px;
     flex-direction: column;
@@ -690,9 +693,10 @@ body::-webkit-scrollbar-thumb:hover{
 
 .imagen-tendencias-tv{
     width: 207px;
+    border-radius: 10px;
+    border: none;
     display: flex;
-    margin: 0 7px 20px 0px;
-    flex-direction: column;
+        flex-direction: column;
     align-items: center;
     position: relative;
     cursor: pointer;
@@ -799,11 +803,13 @@ body::-webkit-scrollbar-thumb:hover{
 .peliculas_favoritas_contendor{
     margin-top: 20px;
     margin-right:30px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     cursor: pointer;
 }
 .titulo_peliculas_favoritas{
     margin-left:30px;
+    margin-top: 40px;
+    font-size: 20px;
 }
 
 .peliculas_favoritas::-webkit-scrollbar{
@@ -825,10 +831,12 @@ body::-webkit-scrollbar-thumb:hover{
     transition-duration: .3s;
 
 }
-
+.inactive2{
+    display: none;
+}
 .boton_introducir_a_fav{
     position: absolute;
-    top: 7px;
+    top: 17px;
     right: 11px;
     background-color:blueviolet;
     border:none;
@@ -842,14 +850,18 @@ body::-webkit-scrollbar-thumb:hover{
 }
 .bonton_ya_introducido{
     position: absolute;
-    box-shadow: 1px 1px 1px 1px rgba(154, 5, 223, 0.274), 1px 0 3px 3px rgba(0, 0, 0, 0.247);    
+    background-color: aliceblue;
+    box-shadow: 1px 1px 10px 1px rgb(154, 5, 223), 1px 1px 7px 7px rgba(164, 6, 226, 0.247);    
 }
 .bonton_ya_introducido::before{
     content:"💖";
 }
 
 .imagen-de-la-peli{
-    z-index: 0;
+   z-index: 0;
+    height: 260px;
+    margin-top: 12px;
+    width: 180px;
 }
 
 .divparaquenosebugue{
@@ -862,3 +874,9 @@ body::-webkit-scrollbar-thumb:hover{
     box-shadow: 0 20px 20px rgb(0 0 0 / 38%), 10px 10px 20px rgb(0 0 0 / 23%);
     border-radius: 10px; 
 }
+
+
+.peliculas_favoritas_contendor{
+    display: flex;
+}
+

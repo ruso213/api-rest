@@ -95,3 +95,8 @@ const flecha_button = document.querySelector(".flecha-button")
 
 const trending_ver_mas_imagenes = document.querySelector(".trending_ver_mas_imagenes")
 const contenedor_de_las_imagenes_trending_ver_mas = document.querySelector(".contenedor_de_las_imagenes_trending_ver_mas")
+
+
+const peliculas_favoritas_contendor = document.querySelector(".peliculas_favoritas_contendor")
+const peliculas_favoritas = document.querySelector(".peliculas_favoritas")
+const titulo_peliculas_favoritas = document.querySelector(".titulo_peliculas_favoritas")

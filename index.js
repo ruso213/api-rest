@@ -52,25 +52,37 @@ function muchasimagenes(movies ,  lazyloader = true){
         movieconteiner.appendChild(namedelapeli)
 
         img_categorias.appendChild(movieconteiner)
-        botonoes(movieconteiner)
+        const btn_favorite_movie = document.createElement("button")
+
+        btn_favorite_movie.classList.add("boton_introducir_a_fav")
+        likedmovielist()[movie.id] && btn_favorite_movie.classList.add("bonton_ya_introducido")
+        btn_favorite_movie.addEventListener("click", ()=>{
+            btn_favorite_movie.classList.toggle("bonton_ya_introducido")
+            likemovie(movie)
+
+        })
+        movieconteiner.appendChild(btn_favorite_movie)
     })
 }
 
 
 
 
-function botonoes(movieconteiner){
+function botonoes(movieconteiner , movie){
     const btn_favorite_movie = document.createElement("button")
+    likedmovielist()[movie.id] && btn_favorite_movie.classList.add("bonton_ya_introducido")
+
     btn_favorite_movie.classList.add("boton_introducir_a_fav")
     btn_favorite_movie.addEventListener("click", ()=>{
         btn_favorite_movie.classList.toggle("bonton_ya_introducido")
-        console.log("hoasfjasfds")
+        likemovie(movie)
+
     })
     movieconteiner.appendChild(btn_favorite_movie)
-    
-}
 
-    const lazyload = new IntersectionObserver((entries) => {
+} 
+
+const lazyload = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
             const url = entry.target.getAttribute("dates-img")
@@ -79,20 +91,67 @@ function botonoes(movieconteiner){
     })
 });
 
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
 
+function likedmovielist(){
+    const item = JSON.parse(localStorage.getItem("liked_movies"))
+    let pelis;
+    
+    if(item){
+        pelis = item
+    }else{
+        pelis = {}
+    }
 
+    console.log(pelis)
+    console.log("pelis")
+    return pelis
+    
+}
 
+function likemovie(movie){
+    let likedmovies = likedmovielist()
 
-//este es el de peliculsa trending
-async function gettrendingpelis(lazyloader = true) {
+    if(likedmovies[movie.id]){
+        likedmovies[movie.id] = undefined
+    }else{
+        likedmovies[movie.id] = movie 
 
-    const { data } = await api("/trending/movie/week?api_key=" + apikey);
-    const movies = data.results;
+        
+    }
 
-   
+    localStorage.setItem('liked_movies',JSON.stringify(likedmovies))
+}
+
+function getlikedmoviesimage(){
+    const likedmovies = likedmovielist()
+    const moviearrays = Object.values(likedmovies)
+    
+    peliculas_favoritas_contendor.innerHTML = ""
+    getpelis(moviearrays , "title" , peliculas_favoritas_contendor, "movie" )
+
+}
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+//--------------------------------------------
+
+ async function getpelis(movies , name , trend, hash , lazyloader = true){
+    
     quivanlasimgs.innerHTML = ""
-
     movies.forEach(movie => {
+
 
         const trendingpreview = document.querySelector(".aqui-van-las-imgs")
 
@@ -101,7 +160,7 @@ async function gettrendingpelis(lazyloader = true) {
         movieconteiner.classList.add("imagen-tendencias-tv")
 
 
-        const categorytext = document.createTextNode(movie.title)
+        const categorytext = document.createTextNode(movie[name])
 
 
         
@@ -112,16 +171,15 @@ async function gettrendingpelis(lazyloader = true) {
 
         const movieimg = document.createElement("img");
         movieimg.classList.add("imagen-de-la-peli");
-        movieimg.setAttribute("alt", movie.title)
+        movieimg.setAttribute("alt", movie[name])
         movieimg.setAttribute(
             "dates-img",
             "https://image.tmdb.org/t/p/w300" + movie.poster_path);
         movieimg.addEventListener("click", () => {
             const movie_id = movie.id
-            const movietitle = movie.title
-            location.hash = `#movie=${movie_id}=${movietitle}`
+            const movietitle = movie[name]
+            location.hash = `#${hash}=${movie_id}=${movietitle}`
 
-            console.log(movietitle, movie_id)
         })
         if (lazyloader) {
             lazyload.observe(movieimg)
@@ -129,9 +187,34 @@ async function gettrendingpelis(lazyloader = true) {
 
         movieconteiner.appendChild(movieimg)
         movieconteiner.appendChild(namedelapeli)
-        trendingpreview.appendChild(movieconteiner)
-        botonoes(movieconteiner)
-    });
+        trend.appendChild(movieconteiner)
+        
+        const btn_favorite_movie = document.createElement("button")
+       
+        likedmovielist()[movie.id] && btn_favorite_movie.classList.add("bonton_ya_introducido")
+
+        btn_favorite_movie.classList.add("boton_introducir_a_fav")
+        btn_favorite_movie.addEventListener("click", ()=>{
+            btn_favorite_movie.classList.toggle("bonton_ya_introducido")
+            likemovie(movie)
+        })
+        movieconteiner.appendChild(btn_favorite_movie)
+        });
+        botondecargarmas.addEventListener("click", () => { location.hash = "#moretrending" })
+        trendingpreview.appendChild(botondecargarmas)
+} 
+
+
+
+//este es el de peliculsa trending
+async function gettrendingpelis(lazyloader = true) {
+    const { data } = await api("/trending/movie/week?api_key=" + apikey);
+    const movies = data.results;
+    trendingpreview.innerHTML = ""
+
+    getpelis(movies, "title", trendingpreview,"movie")
+    
+    
 }
 
 
@@ -148,7 +231,6 @@ async function getmoviedetailstvs(id, movies) {
     botones_sugerencias.innerHTML = ""
     const asa = movie.genres
 
-    console.log(imagen_de_la_pelicula_clickeada)
 
 
 
@@ -180,6 +262,48 @@ async function getmoviedetailstvs(id, movies) {
 
 }
 
+
+
+async function getmoviedetailsmovies(id, name, movies, url) {
+
+    const { data: movie } = await api(`/movie/` + id);
+    botones_sugerencias.innerHTML = ""
+    const asa = movie.genres
+
+
+    asa.forEach(moviesr2 => {
+        const botonesmovies = document.createElement("button")
+        const textodelboton = document.createTextNode(moviesr2.name)
+        botonesmovies.appendChild(textodelboton)
+        botones_sugerencias.appendChild(botonesmovies)
+        botonesmovies.addEventListener("click", () => {
+            location.hash = `#category=${moviesr2.name}-${moviesr2.id}`;
+
+        })
+
+    })
+
+
+
+    movies.forEach(movies => {
+
+        resumen.innerHTML = movie.overview
+        nombre_de_la_peli.innerHTML = movie[name]
+        puntuacion.innerHTML = `⭐ ${movie.vote_average}`
+        imagen_de_la_pelicula_clickeada.src = "https://image.tmdb.org/t/p/w300" + movie.poster_path
+
+
+
+
+        getreloadedmoviesbyid(id)
+    })
+    window.scroll({
+        top: 0,
+        behavior: 'smooth'
+
+    })
+
+}
 
 
 
@@ -221,52 +345,6 @@ async function getcategorispreview() {
 
 
 
-
-async function getmoviedetailsmovies(id, name, movies, url) {
-
-    const { data: movie } = await api(`/movie/` + id);
-    botones_sugerencias.innerHTML = ""
-    const asa = movie.genres
-    console.log(imagen_de_la_pelicula_clickeada)
-
-
-    asa.forEach(moviesr2 => {
-        const botonesmovies = document.createElement("button")
-        const textodelboton = document.createTextNode(moviesr2.name)
-        botonesmovies.appendChild(textodelboton)
-        botones_sugerencias.appendChild(botonesmovies)
-        botonesmovies.addEventListener("click", () => {
-            location.hash = `#category=${moviesr2.name}-${moviesr2.id}`;
-
-        })
-
-    })
-
-
-
-    movies.forEach(movies => {
-
-        resumen.innerHTML = movie.overview
-        nombre_de_la_peli.innerHTML = movie[name]
-        puntuacion.innerHTML = `⭐ ${movie.vote_average}`
-        imagen_de_la_pelicula_clickeada.src = "https://image.tmdb.org/t/p/w300" + movie.poster_path
-
-
-
-
-        getreloadedmoviesbyid(id)
-    })
-    window.scroll({
-        top: 0,
-        behavior: 'smooth'
-
-    })
-
-}
-
-
-
-
 async function getreloadedmoviesbyid(id) {
     const { data: movie } = await api("/movie/" + id + "/recommendations");
     const movies = movie.results
@@ -296,23 +374,23 @@ async function getreloadedmoviesbyid(id) {
             location.hash = `#movie=${movies2.id}=${movies2.title}`
         })
 
-        botonoes(movieconteiner)
-
+        
+        const btn_favorite_movie = document.createElement("button")
+        likedmovielist()[movies2.id] && btn_favorite_movie.classList.add("bonton_ya_introducido")
+    
+        btn_favorite_movie.classList.add("boton_introducir_a_fav")
+        btn_favorite_movie.addEventListener("click", ()=>{
+            btn_favorite_movie.classList.toggle("bonton_ya_introducido")
+            likemovie(movies2)
+    
+        })
+        divdelcontenedor.appendChild(btn_favorite_movie)
     })
 
 
 }
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//aqui empieza el search movies :)       
-let pageofsearch = 1
+     
+let pageofsearch = 2
 
 
 async function getsearchmovies(id , lazyloader = true) {
@@ -332,7 +410,6 @@ async function getsearchmovies(id , lazyloader = true) {
     const movies = data.results;
 
     maxPage = data.total_pages;
-    console.log("maximo de pagina " + maxPage)
     muchasimagenes(movies)
 }
 
@@ -360,10 +437,8 @@ function scrollformorecontentofsearch (query){
         });
 
         const movies2 = data.results
-        console.log(data)
         muchasimagenes(movies2)  
 
-        console.log(pageofsearch)
        }
     }
    
@@ -371,75 +446,18 @@ function scrollformorecontentofsearch (query){
 
 }
 
-//aqui acaba el search movies :)
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//aqui empieza el gettrending
 
 async function gettrendingtv(lazyloader = true) {
 
-    
+   
     const { data } = await api("/tv/popular?api_key=" + apikey);
     const movies = data.results;
 
-    
-
-  
-
-    botondecargarmas.addEventListener("click", () => { location.hash = "#moretrending" })
-    quivanlasimgs.appendChild(botondecargarmas)
-
-    
-
-
     quivanlasimgs_tvs.innerHTML= ""
     
-    movies.forEach(movie => {
+    await getpelis(movies,"name",quivanlasimgs_tvs, "tv")
 
-        const trendingpreview = document.querySelector(".aqui-van-las-imgs-tv")
-
-
-        const movieconteiners = document.createElement("div")
-        movieconteiners.classList.add("imagen-tendencias-tv")
-
-
-        const categorytext = document.createTextNode(movie.original_name)
-
-
-        const namedelapeli = document.createElement("h3")
-        namedelapeli.classList.add("texoth3")
-        namedelapeli.appendChild(categorytext)
-
-
-
-
-        const movieimg = document.createElement("img");
-        movieimg.classList.add("imagen-de-la-peli");
-        movieimg.setAttribute("alt", movie.title)
-        movieimg.setAttribute("dates-img", "https://image.tmdb.org/t/p/w300" + movie.poster_path);
-
-
-        if (lazyloader) {
-            lazyload.observe(movieimg)
-        }
-
-        movieconteiners.appendChild(movieimg)
-        movieconteiners.appendChild(namedelapeli)
-        botonoes(movieconteiners)
-        trendingpreview.appendChild(movieconteiners)
-        movieimg.addEventListener("click", () => {
-            const movie_id = movie.id
-
-            location.hash = `#tv=${movie_id}=${movie.original_name}`
-        })
-    });
+    
     maxPage = data.total_pages;
 
 
@@ -474,6 +492,25 @@ async function loadMoretrendingpelis( lazyloader = true) {
 }
 
 
+async function getcategorymovies(id, lazyloader = true) {
+    pageofsearch = 2
+    img_categorias.innerHTML =""
+    window.scroll({
+        top: 0,
+        behavior: 'smooth'
+
+    })
+    const { data } = await api("/discover/movie", {
+        params: {
+            with_genres: id,
+        }
+    });
+    const movies = data.results;
+    
+    img_categorias.innerHTML = ""
+    muchasimagenes(movies)
+    
+}
 
 
 async function scrollformorecontent (){
@@ -494,45 +531,11 @@ async function scrollformorecontent (){
         });
 
         const movies2 = data.results
-        console.log(data)
         muchasimagenes(movies2)  
 
        }
 
 }
-
-//aqui acaba el gettrending :)
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//--------------------------------
-//este es el click de las categorias 
-async function getcategorymovies(id, lazyloader = true) {
-    window.scroll({
-        top: 0,
-        behavior: 'smooth'
-
-    })
-    const { data } = await api("/discover/movie", {
-        params: {
-            with_genres: id,
-        }
-    });
-    const movies = data.results;
-
-    img_categorias.innerHTML = ""
-
-    muchasimagenes(movies)
-    
-}
-
-
-
 
 function scrollformorecontentofcategory (id){
   
@@ -546,7 +549,7 @@ function scrollformorecontentofcategory (id){
 
      const paginateisnotmax = pageofsearch < maxPage;
 
-     if(isscrollbotom && paginateisnotmax ){
+     if(isscrollbotom ){
          const { data } = await api(`/discover/movie`, {
              params: {
                  page: pageofsearch++,
@@ -556,10 +559,8 @@ function scrollformorecontentofcategory (id){
          });
  
          const movies2 = data.results
-         console.log(data)
          muchasimagenes(movies2)  
  
-         console.log(pageofsearch)
         }
      }
     
