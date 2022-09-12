@@ -13,19 +13,17 @@
 
     <div class="cabeza-barra">
         <a class="as"  href="index.html">RusoMovies</a>
-        <div class="dentro">
-            <a href="https://www.instagram.com/rodrigo__mzt/">
-                <img src="./assets/instagram (1).png" height="30px" alt="">
-            </a>
-            <a href="https://www.instagram.com/rodrigo__mzt/">
-                <img src="./assets/instagram (1).png" height="30px" alt="">
-            </a>
-            <a href="https://www.instagram.com/rodrigo__mzt/">
-                <img src="./assets/instagram (1).png" height="30px" alt="">
-            </a>
+        
 
-
-        </div>
+        <select class="header__select" name="lang" id="langId">
+            <option value="en">🇺🇸 English</option>
+            <option value="fr">🇫🇷 French</option>
+            <option value="it">🇮🇹 Italian</option>
+            <option value="pt">🇵🇹 Portuguese</option>
+            <option value="ru">🇷🇺 Russian</option>
+            <option value="es">🇪🇸 Spanish</option>
+            <option value="tr">🇹🇷 Turkish</option>
+          </select>
 
     </div>
 
@@ -62,12 +60,12 @@
                 <h3 class="tendencias-texto ">tendencias</h3>
                 <h3 class="tendencias-texto inactive">tendencias peliculas</h3>
                 <button onclick="clickvermas()" href="./trending.html" class="tendencias-boton">
-                    <h3> ver mas</h3>
+                    ver mas
                 </button>
                 <button class="tendencias-boton-ver-menos inactive" onclick="clicklogo()">
-                    <h3>
-                        <h3> ver menos</h3>
-                    </h3>
+                   
+                         ver menos
+                    
                 </button>
             </div>
 
@@ -166,13 +164,7 @@
             </div>
 
         </div>
-        <h3 class="titulo_peliculas_favoritas">peliculas favoritas</h3>
-
-        <div class="peliculas_favoritas">
-            <div class="peliculas_favoritas_contendor">
-            </div>
-           
-        </div>
+       
 
         <h2 class="achedos">categorias</h2>
 
@@ -272,7 +264,13 @@
             </div>
 
     </div>    
+    <h3 class="titulo_peliculas_favoritas">peliculas favoritas</h3>
 
+    <div class="peliculas_favoritas">
+        <div class="peliculas_favoritas_contendor">
+        </div>
+       
+    </div>
     
     </section>
 
@@ -283,6 +281,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script src="./node.js"></script>
+    <script src="./randi.js"></script>
     <script src="./index.js"></script>
     
     <script src="./navegator.js"></script>

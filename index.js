@@ -1,4 +1,4 @@
-
+let lenguages = localStorage.getItem("lenguage")
 const apikey = "0a8c928df346aad46752e35300e6114e";
 const api = axios.create({
     baseURL: "https://api.themoviedb.org/3"
@@ -7,7 +7,8 @@ const api = axios.create({
         "content-type": "application/json;charset=utf-8"
     },
     params: {
-        "api_key": apikey
+        "api_key": apikey,
+        "language": lenguages
     }
 })/* const { id } = require("date-fns/locale");
  */
@@ -67,7 +68,6 @@ function muchasimagenes(movies ,  lazyloader = true){
 
 
 
-
 function botonoes(movieconteiner , movie){
     const btn_favorite_movie = document.createElement("button")
     likedmovielist()[movie.id] && btn_favorite_movie.classList.add("bonton_ya_introducido")
@@ -82,14 +82,7 @@ function botonoes(movieconteiner , movie){
 
 } 
 
-const lazyload = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            const url = entry.target.getAttribute("dates-img")
-            entry.target.setAttribute("src", url)
-        }
-    })
-});
+
 
 //--------------------------------------------
 //--------------------------------------------
@@ -101,6 +94,7 @@ const lazyload = new IntersectionObserver((entries) => {
 //--------------------------------------------
 
 function likedmovielist(){
+   
     const item = JSON.parse(localStorage.getItem("liked_movies"))
     let pelis;
     
@@ -110,8 +104,7 @@ function likedmovielist(){
         pelis = {}
     }
 
-    console.log(pelis)
-    console.log("pelis")
+    
     return pelis
     
 }
@@ -121,21 +114,45 @@ function likemovie(movie){
 
     if(likedmovies[movie.id]){
         likedmovies[movie.id] = undefined
+
     }else{
         likedmovies[movie.id] = movie 
 
-        
+         
+
     }
 
     localStorage.setItem('liked_movies',JSON.stringify(likedmovies))
+    getlikedmoviesimage(movie)
+    gettrendingpelis()
 }
 
-function getlikedmoviesimage(){
+function getlikedmoviesimage(movie){
     const likedmovies = likedmovielist()
     const moviearrays = Object.values(likedmovies)
+    console.log(moviearrays)
     
+    if(moviearrays.length == 0 && location.hash != "#trend" && "#home"){
+        titulo_peliculas_favoritas.classList.add("inactive")
+
+        console.log("noesmayot")
+
+    }
+   
+    else {
+        titulo_peliculas_favoritas.classList.remove("inactive")
+       
+        console.log("esmayot")
+        peliculas_favoritas.classList.remove("inactive")
+        peliculas_favoritas.classList.remove("inactive2")
+    }
+    
+
     peliculas_favoritas_contendor.innerHTML = ""
-    getpelis(moviearrays , "title" , peliculas_favoritas_contendor, "movie" )
+
+        getpelis(moviearrays , "title" , peliculas_favoritas_contendor, "movie" )
+
+    
 
 }
 //--------------------------------------------
@@ -196,6 +213,7 @@ function getlikedmoviesimage(){
         btn_favorite_movie.classList.add("boton_introducir_a_fav")
         btn_favorite_movie.addEventListener("click", ()=>{
             btn_favorite_movie.classList.toggle("bonton_ya_introducido")
+            
             likemovie(movie)
         })
         movieconteiner.appendChild(btn_favorite_movie)

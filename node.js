@@ -100,3 +100,7 @@ const contenedor_de_las_imagenes_trending_ver_mas = document.querySelector(".con
 const peliculas_favoritas_contendor = document.querySelector(".peliculas_favoritas_contendor")
 const peliculas_favoritas = document.querySelector(".peliculas_favoritas")
 const titulo_peliculas_favoritas = document.querySelector(".titulo_peliculas_favoritas")
+
+const header__select = document.querySelector(".header__select")
+
+header__select.value =localStorage.lenguage

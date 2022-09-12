@@ -205,8 +205,7 @@ function home(){
     getcategorispreview()
     gettrendingpelis() 
     getlikedmoviesimage()
-    titulo_peliculas_favoritas.classList.remove("inactive")
-
+   
     scrollbartendencias.classList.remove("inactive")
     detail.classList.add("inactive")
     tendencia.classList.remove("inactive")

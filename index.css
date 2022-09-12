@@ -7,7 +7,7 @@ rgb(189, 189, 247); */
     :root{
     --moradofuerte:rgb(163, 163, 163);
     --moradofuerte2:rgb(163, 163, 163);
-    --moradonofuerte:rgb(65, 65, 65);
+    --moradonofuerte:rgb(58,63, 71);
     --rojomamalon:rgba(180, 8, 8, 0.644);
     --negrotransparente : rgba(255, 255, 255, 0.137);
 }
@@ -19,7 +19,7 @@ rgb(189, 189, 247); */
 }
 
 body{
-    background-color: /* rgb(143, 166, 216) */ rgb(22, 22, 22);
+    background-color: /* rgb(143, 166, 216) */ rgb(36, 42, 50);
     color: var(--moradofuerte);
 }
 
@@ -46,7 +46,7 @@ body::-webkit-scrollbar-thumb:hover{
 .cabeza{
     background-color: var(--moradonofuerte);
     display: grid;
-    background-color: rgb(19, 19, 19);
+    background-color: rgb(64, 75, 88);
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
 }
@@ -56,18 +56,22 @@ body::-webkit-scrollbar-thumb:hover{
 }
 
 .imagen-de-la-peli{
-    height: 300px;
-    width: 200px;
+    z-index: 0;
+    height: 260px;
+    margin-top: 12px;
+    width: 180px;
+    box-shadow: 3px 3px 3px 3px rgba(61, 189, 146, 0.137), 1px 1px 1px 1px rgba(61, 189, 146, 0.425);
+
     max-width: 200px;   
     margin-bottom: 10px;
     margin-right: 10px;
     margin-left: 10px;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .imagen-de-la-peli:hover{
-    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.377), 10px 10px 20px rgb(0 0 0 / 23%);
-
+    box-shadow: 2px 8px 10px rgb(61 ,189 ,147), 1px 1px 1px 3px rgba(61, 189, 146, 0.425);
+ 
 }
 .imagen-categorias .texoth3{
     margin-bottom: 20px;
@@ -237,9 +241,9 @@ body::-webkit-scrollbar-thumb:hover{
     margin-right: 5vw;
     background-color:var(--moradofuerte) ;
     border: none;
-    border-radius: 7px;
+    border-radius: 20px;
     color: var(--moradonofuerte);
-    padding:7px;
+    height: 40px;
     cursor: pointer;
 }
 
@@ -249,15 +253,22 @@ body::-webkit-scrollbar-thumb:hover{
 .tendencias-boton h3:hover{
     color: var(--moradofuerte);
 }
+.tendencias-boton:hover{
+    color: var(--moradofuerte);
+}
 
 
+.tendencias-boton-ver-menos:hover{
+    color: var(--moradofuerte);
+
+}
 .tendencias-boton-ver-menos{
     margin-right: 5vw;
     background-color:var(--moradofuerte) ;
     border: none;
-    border-radius: 7px;
+    border-radius: 20px;
     color: var(--moradonofuerte);
-    padding:7px;
+    height: 40px;
     cursor: pointer;
 }
 .tendencia-arriba button :hover{
@@ -311,9 +322,9 @@ body::-webkit-scrollbar-thumb:hover{
     border: 0px;
 }
 
-.imagen-de-la-peli{
+/* .imagen-de-la-peli{
     max-width: 200px;   
-}
+} */
 
 .categorias-botones div{
     margin-bottom: 20px;
@@ -373,11 +384,13 @@ body::-webkit-scrollbar-thumb:hover{
 .botones{
     color: var(--moradonofuerte);
     background-color: var(--moradofuerte);  
-    border-radius: 5px;
+    border-radius: 20px;
     display: flex;
+    height: 30px;
     padding: 5px;
     cursor: pointer;
     border: 0px;
+    align-items: center;
 }
 
 
@@ -389,9 +402,9 @@ body::-webkit-scrollbar-thumb:hover{
 }
 
 .botones:hover{
-    background-color:var(--rojomamalon);
+    background-color:rgb(69, 80, 94);
     color: white ;
-    transition-duration: .5s;
+    transition-duration: .2s;
    
 }
 
@@ -434,7 +447,8 @@ body::-webkit-scrollbar-thumb:hover{
 .aqui-van-las-imgs-tv{
     display: flex;
     overflow-x: auto;
-    height: 337px;
+    height: 347px;
+    
     margin-left: 27px;
     margin-top: 20px;
     align-items: center;
@@ -517,13 +531,13 @@ body::-webkit-scrollbar-thumb:hover{
 
 
 
-.categorias-imagenes .imagen-categorias:hover{
+/* .categorias-imagenes .imagen-categorias:hover{
     transform: translateY(-10px) ;
     transition-duration: .3s;
     cursor:pointer;
     box-shadow: 0 20px 20px rgb(0 0 0 / 38%), 10px 10px 20px rgb(0 0 0 / 23%);
     border-radius: 10px;
-}
+} */
 
 .flecha-button{
     background-color: rgba(0, 0, 0, 0);
@@ -694,9 +708,10 @@ body::-webkit-scrollbar-thumb:hover{
 .imagen-tendencias-tv{
     width: 207px;
     border-radius: 10px;
-    border: none;
     display: flex;
-        flex-direction: column;
+    margin-bottom: 10px;
+    border: rgb(61 189 147) 10px;
+    flex-direction: column;
     align-items: center;
     position: relative;
     cursor: pointer;
@@ -779,7 +794,6 @@ body::-webkit-scrollbar-thumb:hover{
     padding: 107px 75px;
     position:relative;
     display: flex;
-    top: -25px;
     border-radius: 10px;
     border:  none;
     background-color: var(--negrotransparente);
@@ -850,33 +864,90 @@ body::-webkit-scrollbar-thumb:hover{
 }
 .bonton_ya_introducido{
     position: absolute;
-    background-color: aliceblue;
     box-shadow: 1px 1px 10px 1px rgb(154, 5, 223), 1px 1px 7px 7px rgba(164, 6, 226, 0.247);    
 }
 .bonton_ya_introducido::before{
-    content:"💖";
+    content:"🖤";
 }
 
-.imagen-de-la-peli{
-   z-index: 0;
-    height: 260px;
-    margin-top: 12px;
-    width: 180px;
-}
+
 
 .divparaquenosebugue{
     display: flex;
 }
-.imagen-tendencias-tv:hover{
+/* .imagen-tendencias-tv:hover{
    transform: translateY(-10px) ;
     transition-duration: .3s;
     cursor:pointer;
     box-shadow: 0 20px 20px rgb(0 0 0 / 38%), 10px 10px 20px rgb(0 0 0 / 23%);
     border-radius: 10px; 
 }
-
+ */
 
 .peliculas_favoritas_contendor{
     display: flex;
 }
 
+.lenguajes{
+    text-decoration: none;
+    list-style: none;
+    margin-right: 30px ;
+    border: 0;
+
+}
+
+.lenguaje{
+    display: flex;
+    text-decoration: none;
+    position: absolute;
+    flex-direction: column;
+    right: 20px;
+    border: 0;
+    height: 200px;
+
+    top: 30px;
+
+}
+.lenguaje button{
+        color: rgb(255, 255, 255);
+    background-color:rgb(46, 46, 46) ;
+    border: 0;
+
+}
+.lenguaje .nombre{
+    right: 10px;
+    position: initial;
+    display:static;
+    border: 0;
+
+
+}
+.lenguaje button:hover{
+    background-color:rgba(255, 255, 255, 0.363) ;
+    transition-delay: .2s;
+
+}
+.arriba_nombre{
+    list-style: none;
+    display: none;
+    border: 0;
+}
+.lenguajes li:hover > ul{
+    display: block;
+    transition-delay: .2s;
+}
+
+.header__select {
+    background-color: rgb(56, 65, 77);
+    color: var(--soft-white);
+    margin-right: 30px;
+    border-radius: 20px;
+    height: 30px;
+    font-size: var(--sm);
+    border: 1px solid var(--dark);
+    outline: none;
+}
+
+.peliculas_favoritas_contendor .bonton_ya_introducido{
+    right: 17px;
+}
